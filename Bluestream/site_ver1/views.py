@@ -8,7 +8,7 @@ class HomePageView(TemplateView):
 	template_name = "index.html"
 
 class LoginPageView(TemplateView):
-	template_name = "login.html"
+	template_name = "loginpage.html"
 
 class RegisterPageView(TemplateView):
 	template_name ="signup.html"
