@@ -1,0 +1,23 @@
+README
+
+4.22 First attempt at Django
+
+changes:
+* a Django project that can potentially host all parts of website
+* an app named site_ver1 is installed(include index, login, and signup pages)
+(done in Python 2.7.12)
+
+lauch the Django server via:
+
+cd Bluestream
+python manage.py migrate
+python manage.py runserver
+if succeeded, python will output the url for the website to visit (usually http://127.0.0.1:8000/).
+
+
+
+/////////////development notes/////////
+Add an app to the Bluestream project:
+go to /Bluestream/Bluestream/settings.py, add 'appname' to INSTALLED_APPS
+
+
