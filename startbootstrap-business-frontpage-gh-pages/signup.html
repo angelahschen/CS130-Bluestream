@@ -32,12 +32,24 @@
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="name">Vendor Name</label>  
+          <label class="col-md-4 control-label" for="name">Name</label>  
           <div class="col-md-4">
-          <input id="name" name="name" type="text" placeholder="Vendor Name" class="form-control input-md" required="">
+          <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
           <span class="help-block">Name of buisness</span>  
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="usertype">User type</label>
+          <div class="col-md-4">
+          <select class="form-control" id="usertype">
+          <option>Client</option>
+          <option>Regulatory Consultant</option>
+          </select>
+          <span class="help-block">Type of user accessing account</span> 
+          </div>
+        </div>
+     
 
         <!-- Text input-->
         <div class="form-group">
@@ -68,10 +80,10 @@
 
         <!-- Password input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="rpassword">confirm</label>
+          <label class="col-md-4 control-label" for="rpassword">Confirm Password</label>
           <div class="col-md-4">
             <input id="rpassword" name="rpassword" type="password" placeholder="Password" class="form-control input-md" required="">
-            <span class="help-block">Retype pass word</span>
+            <span class="help-block">Retype password</span>
           </div>
         </div>
 

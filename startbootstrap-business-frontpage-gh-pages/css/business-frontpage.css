@@ -4,20 +4,44 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
+ /* ***************************************
+GENERAL
+**************************************** */
+.wrap{
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+
 body {
     padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
+.navbar-blue-color {
+    background-color: #036 ;
+}
+
 /* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
 
-.business-header {
+/* ***************************************
+HERO
+**************************************** */
+
+.hero{
+    background-color: #036;
+    padding: 80px 0px;
     height: 400px;
-    background: url('http://placehold.it/1920x400') center center no-repeat scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+    /*background-image: url("../img/pattern.png");*/
 }
+
+.hero h1,
+.hero p {
+    color: rgba(255,255,255,0.8);
+    width: 70%;
+}
+
 
 /* Customize the text color and shadow color and to optimize text legibility. */
 
