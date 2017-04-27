@@ -30,12 +30,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-STATIC_ROOT = ''
-STATIC_URL = '/static/'
+STATIC_ROOT = 'site_ver1/'
+STATIC_URL = 'static/'
 
-STATICFILES_DIRS = (
-    os.path.join('static'),
-)
+STATICFILES_DIRS = ()
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
