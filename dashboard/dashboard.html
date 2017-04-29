@@ -36,7 +36,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="blue">
 
     <!--
 
@@ -84,7 +84,9 @@
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
+        <!-- Navigation -->
+ 
+        <nav class="navbar navbar-inverse navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     
@@ -137,37 +139,40 @@
                                 <p class="category">Backend development</p>
                             </div>
                             <div class="content">
-                                <div class="table-full-width">
+                                <div class="table-full-width list-group">
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <input type="text" class="form-control add-todo" placeholder="Add New Task">
+                                                <input type="text" class="form-control add-todo" placeholder="Add New Task">   
+                                            </tr>
+
+                                            <tr>
+                                                
+                                                <td>
+                                                    <label class="checkbox">
+                                                        <input type="checkbox" value="" data-toggle="checkbox">
+                                                    </label>
+                                                </td>
+                                             
+                                                <td><a href="#">Full MDUFA form</a></td>
+                                                <td class="td-actions text-right">
+                                                    <button type="button"  rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </td>
                                                 
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                                                <td>Full MDUFA form</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" onclick="newElement()" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
+
                                             <tr>
                                                 <td>
                                                     <label class="checkbox">
                                                         <input type="checkbox" value="" data-toggle="checkbox" checked="">
                                                     </label>
                                                 </td>
-                                                <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                                <td><a href="#">Section 3 -- Update Company Logo</a></td>
                                                 <td class="td-actions text-right">
                                                     <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
                                                         <i class="fa fa-edit"></i>
@@ -177,30 +182,14 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox" checked="">
-                                                    </label>
-                                                </td>
-                                                <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
+
                                             <tr>
                                                 <td>
                                                     <label class="checkbox">
                                                         <input type="checkbox" value="" data-toggle="checkbox">
                                                     </label>
                                                 </td>
-                                                <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                                                <td><a href="#">Complete RTA table from Section 3</a></td>
                                                 <td class="td-actions text-right">
                                                     <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
                                                         <i class="fa fa-edit"></i>
@@ -210,38 +199,7 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td>Read "Following makes Medium better"</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td>Unfollow 5 enemies from twitter</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                            
 
 
                                             
@@ -254,35 +212,7 @@
                         </div>
                     </div>
 
-                     <div class="col-md-6">
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">Tasks List</h4>
-                                <p class="category">Backend development</p>
-                            </div>
-                            <div class="list-group">
-
-                                
-                         
-                                  
-                                <a href="#" class="list-group-item">
-                                <div class="checkbox">
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                    </label>
-                                </div>
-               
-                                Fill MDUFA Cover Sheet
-                                </a>
-                               
-                               
-                                <a href="#" class="list-group-item">Section 3 -- Update Company Logo</a>
-                                <a href="#" class="list-group-item">Morbi leo risus</a>
-                                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                                <a href="#" class="list-group-item">Vestibulum at eros</a>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="col-md-6">
                         <div class="card ">
@@ -296,11 +226,9 @@
                                         <tbody>
                                             <tr>
                                                 
-                                                <td>Catheter</td>
+                                                <td><a href="#">Catheter</a></td>
                                                 <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
+                                                   
                                                     <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="fa fa-times"></i>
                                                     </button>
@@ -308,11 +236,9 @@
                                             </tr>
                                             <tr>
                                                 
-                                                <td>Syringe</td>
+                                                <td><a href="#">Syringe</a></td>
                                                 <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
+                                                    
                                                     <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="fa fa-times"></i>
                                                     </button>
@@ -320,12 +246,9 @@
                                             </tr>
                                             <tr>
                                                 
-                                                <td>Surgical suture
-</td>
+                                                <td><a href="#">Surgical suture</a></td>
                                                 <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
+                                                  
                                                     <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="fa fa-times"></i>
                                                     </button>
@@ -333,11 +256,9 @@
                                             </tr>
                                             <tr>
                                                 
-                                                <td>Infusion pump</td>
+                                                <td><a href="#">Infusion pump</a></td>
                                                 <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
+                                               
                                                     <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="fa fa-times"></i>
                                                     </button>
@@ -345,11 +266,9 @@
                                             </tr>
                                             <tr>
                                                 
-                                                <td>Thermometer</td>
+                                                <td><a href="#">Thermometer</a></td>
                                                 <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
+                                              
                                                     <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="fa fa-times"></i>
                                                     </button>
@@ -357,11 +276,9 @@
                                             </tr>
                                             <tr>
                                                 
-                                                <td>Artificial cardiac pacemaker</td>
+                                                <td><a href="#">Artificial cardiac pacemaker</a></td>
                                                 <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
+                                                 
                                                     <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="fa fa-times"></i>
                                                     </button>
@@ -406,7 +323,7 @@
                     </ul>
                 </nav>
                 <p class="copyright pull-right">
-                    &copy; 2017 <a href="http://www.creative-tim.com">Creative Tim</a>
+                    &copy; 2017 <a href="http://www.creative-tim.com">Blue Stream</a>
                 </p>
             </div>
         </footer>
