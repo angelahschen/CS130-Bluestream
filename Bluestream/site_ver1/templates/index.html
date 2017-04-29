@@ -1,111 +1,155 @@
-<!doctype html>
-<html class="no-js" lang="en" dir="ltr">
-  <head>
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation for Sites</title>
-    
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-frontpage.css">
-  </head>
-  <body>
-  
-  <!-- DESKTOP NAVIGATION -->
-  <nav class="top-bar nav-desktop">
-    <div class="wrap">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-      <div class="top-bar-left">
-        <h3 class="site-logo">Blue-Stream</h3>
-      </div>
+    <title>Business Frontpage - Start Bootstrap Template</title>
 
-      <div class="top-bar-right">
-        <ul class="menu menu-desktop">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
+    <!-- Bootstrap Core CSS -->
+	<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
 
-    </div>
+    <!-- Custom CSS -->
+	<link href="{% static "css/business-frontpage.css" %}" rel="stylesheet">
 
-  </nav>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-  <!-- HERO SECTION -->
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container wrap">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button button-primary" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Blue Stream</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Image Background Page Header -->
+    <!-- Note: The background image is set within the business-casual.css file. -->
+     <!-- HERO SECTION -->
   <section class="hero">
     <div class="wrap">
       <h1>Welcome to Blue Stream</h1>
       <p>
-      Blue Stream provides software platform to reduce the time and cost to navigate regulatory pathway for launching Medical Devices.
+      The TurboTax for Medical Device FDA Submissions!
       </p>
-      <a href="/loginpage/" class="button">Login</a>
-
-</script>
-      <a href="/signup/" class="button success">Register an account</a>
+      <a href="loginpage.html" class="btn btn-danger">Login</a>
+      <a href="signup.html" class="btn btn-success">Register an account</a>
     </div>
     
   </section>
 
-  <!-- MAIN CONTENT -->
-  <section class="main">
-    <div class="wrap row">
-      <div class="small-12 medium-6 column">
-        <h1>Benefits</h1>
+    <!-- Page Content -->
+    <div class="container">
+
         <hr>
-        <p>
-          • Patients get life-saving devices sooner
-        </p>
-        <p>
-          • Reduce the cost of health care delivery 
-        </p>
-      </div>
-      <div class="small-12 medium-6 column">
-        <h1>Blue Stream Software for Regulatory</h1>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Who are we?</h2>
+                <p>Blue Stream provides software platform to reduce the time and cost to navigate regulatory pathway for launching Medical Devices.</p>
+                <p>
+                    <a class="btn btn-default btn-lg" href="dashboard.html">Client Dashboard &raquo;</a>
+                    <a class="btn btn-default btn-lg" href="dashboard.html">RC Dashboard &raquo;</a>
+                </p>
+                
+            </div>
+            <div class="col-sm-4">
+                <h2>Contact Us</h2>
+                <address>
+                    <strong>Blue Stream</strong>
+                    <br>1100 Westwood Plaza
+                    <br>Los Angeles, CA 90095
+                    <br>
+                </address>
+                <address>
+                    <abbr title="Phone">P:</abbr>(123) 456-7890
+                    <br>
+                    <abbr title="Email">E:</abbr> <a href="mailto:#">soumya.mahapatra.2017@anderson.ucla.edu</a>
+                </address>
+            </div>
+        </div>
+        <!-- /.row -->
+
         <hr>
-        <p>
-        A platform that leverages advanced analytics and intuitive user design to streamline manual processes, reducing time and cost of FDA submissions.
-        </p>
-      </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+                <h2>Marketing Box #1</h2>
+                <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
+            </div>
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+                <h2>Marketing Box #2</h2>
+                <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+            </div>
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+                <h2>Marketing Box #3</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Blue Stream 2017</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
     </div>
-  </section>
+    <!-- /.container -->
 
+    <!-- jQuery -->
+	<script src="{% static "js/jquery.js" %}"></script>
 
-  <!-- FOOTER SECTION -->
-  <footer>
-    <div class="wrap row small-up-1 medium-up-3">
-      <div class="column">
-        <h4>Contact Info</h4>
-        <hr>
-        <a href="#"><span>Phone</span> 234 234 2340</a>
-        <a href="#"><span>Email</span> info@company.com</a>
-        <a href="#"><span>Address</span> 123 Center Street</a>
-      </div>
+    <!-- Bootstrap Core JavaScript -->
+	<script src="{% static "js/bootstrap.min.js" %}"></script>
 
-      <div class="column">
-        <h4>Site Map</h4>
-        <hr>
-        <a href="#">About Us</a>
-        <a href="#">Services</a>
-        <a href="#">Contact Us</a>
-      </div>
+</body>
 
-      <div class="column">
-        <h4>Contact Info</h4>
-        <hr>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">Instagram</a>
-      </div>
-    </div>
-  </footer>
-
-
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/angular.min.js"></script>
-    <script src="js/angular-route.js"></script>
-  </body>
 </html>
