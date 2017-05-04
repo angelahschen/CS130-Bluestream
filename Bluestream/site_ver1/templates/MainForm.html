@@ -16,8 +16,8 @@
 
 	{% block title %}
 	<!-- Title -->
-    <title>Business Frontpage - Start Bootstrap Template</title>
-	{% endblock %}
+    <title>Project Name 510(k)</title>
+	{% endblock title %}
 
 
 	<!-- Including CSS -->
@@ -30,7 +30,7 @@
 
 	<!-- Our CSS -->
 	<link href="{% static "css/Bluestream.css" %}" rel="stylesheet">
-	{% endblock %}
+	{% endblock css %}
 
 
 	{% block html5 %}
@@ -40,11 +40,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	{% endblock %}
+	{% endblock html5 %}
 
 </head>
-{% endblock %}
+{% endblock heading %}
 
+{% block body %}
 <body>
 
     <!-- Navigation -->
@@ -482,6 +483,7 @@
 	<script src="{% static "js/bootstrap.min.js" %}"></script>
 
 </body>
+{% endblock %}
 
 </html>
 
