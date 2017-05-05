@@ -1,42 +1,18 @@
-{% load static %}
-<head>
-    <!-- FROM http://bootsnipp.com/snippets/vvnKj -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Business Frontpage - Start Bootstrap Template</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{% static "css/business-frontpage.css" %}" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
+{% extends "base.html" %}
+{% block content %}
 <div>
-<form class="form-horizontal">
+<form class="form-horizontal" method="post" action="{% url "submission" %}">{% csrf_token %}
     <fieldset>
 
         <!-- Form Name -->
         <legend>Register</legend>
-
+		<strong>{{ message }}</strong>
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="name">Vendor Name</label>  
           <div class="col-md-4">
           <input id="name" name="name" type="text" placeholder="Vendor Name" class="form-control input-md" required="">
-          <span class="help-block">Name of buisness</span>  
+          <span class="help-block">Name of business</span>  
           </div>
         </div>
 
@@ -54,7 +30,7 @@
           <label class="col-md-4 control-label" for="email">Email</label>  
           <div class="col-md-4">
           <input id="email" name="email" type="text" placeholder="Email address" class="form-control input-md" required="">
-          <span class="help-block">Email will be used for notication messages</span>  
+          <span class="help-block">Email will be used for notification messages</span>  
           </div>
         </div>
 
@@ -63,7 +39,7 @@
           <label class="col-md-4 control-label" for="password">Password </label>
           <div class="col-md-4">
             <input id="password" name="password" type="password" placeholder="Password " class="form-control input-md" required="">
-            <span class="help-block">Admin Password </span>
+            <span class="help-block">Admin Password</span>
           </div>
         </div>
 
@@ -72,7 +48,7 @@
           <label class="col-md-4 control-label" for="rpassword">confirm</label>
           <div class="col-md-4">
             <input id="rpassword" name="rpassword" type="password" placeholder="Password" class="form-control input-md" required="">
-            <span class="help-block">Retype pass word</span>
+            <span class="help-block">Retype password</span>
           </div>
         </div>
 
@@ -105,7 +81,7 @@
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="selectbasic">Select Basic</label>
+          <label class="col-md-4 control-label" for="selectbasic">Select State</label>
           <div class="col-md-4">
             <select id="selectbasic" name="selectbasic" class="form-control">
 		        <option value="">Choose State:</option>
@@ -172,14 +148,14 @@
           </div>
         </div>
 
-        <!-- Text input-->
+        <!-- Text input
         <div class="form-group">
           <label class="col-md-4 control-label" for="contactname">Contact Name</label>  
           <div class="col-md-4">
           <input id="contactname" name="contactname" type="text" placeholder="Full Name" class="form-control input-md" required="">
     
           </div>
-        </div>
+        </div>-->
 
         <!-- Text input-->
         <div class="form-group">
@@ -211,3 +187,4 @@
         </fieldset>
         </form>
 </div>
+{% endblock %}
