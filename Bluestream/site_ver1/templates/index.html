@@ -1,80 +1,15 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 {% load static %}
-<html lang="en">
 
-{% block heading %}
-<head>
-
-	{% block metadata %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-	{% endblock metadata %}
-
-    {% block title%}
-    <title>Business Frontpage - Start Bootstrap Template</title>
-    {% endblock title%}
-
-
-    {% block css %}
+{% block css %}
     <!-- Bootstrap Core CSS -->
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{% static "css/business-frontpage.css" %}" rel="stylesheet">
-    {% endblock css %}
+{% endblock css %}
 
-	{% block html5 %}
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	{% endblock html5 %}
-
-</head>
-{% endblock heading %}
-
-{% block body %}
-<body>
-
-    {% block topnavbar %}
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container wrap">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button button-primary" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Blue Stream</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-    {% endblock topnavbar %}
-
+{% block content %}
     {% block hero %}
     <!-- Image Background Page Header -->
     <!-- Note: The background image is set within the business-casual.css file. -->
@@ -85,14 +20,13 @@
         <p>
         The TurboTax for Medical Device FDA Submissions!
         </p>
-        <a href="loginpage.html" class="btn btn-danger">Login</a>
-        <a href="signup.html" class="btn btn-success">Register an account</a>
+        <a href="loginpage" class="btn btn-danger">Login</a>
+        <a href="signup" class="btn btn-success">Register an account</a>
       </div>
       
     </section>
     {% endblock hero %}
 
-    {% block content %}
     <!-- Page Content -->
     <div class="container">
 
@@ -103,8 +37,8 @@
                 <h2>Who are we?</h2>
                 <p>Blue Stream provides software platform to reduce the time and cost to navigate regulatory pathway for launching Medical Devices.</p>
                 <p>
-                    <a class="btn btn-default btn-lg" href="dashboard.html">Client Dashboard &raquo;</a>
-                    <a class="btn btn-default btn-lg" href="dashboard.html">RC Dashboard &raquo;</a>
+                    <a class="btn btn-default btn-lg" href="dashboard">Client Dashboard &raquo;</a>
+                    <a class="btn btn-default btn-lg" href="dashboard">RC Dashboard &raquo;</a>
                 </p>
                 
             </div>
@@ -148,6 +82,7 @@
 
         <hr>
 
+    {% block footer %}
         <!-- Footer -->
         <footer>
             <div class="row">
@@ -157,21 +92,9 @@
             </div>
             <!-- /.row -->
         </footer>
+    {% endblock footer %}
 
     </div>
     <!-- /.container -->
-    {% endblock content %}
 
-    {% block js %}
-    <!-- jQuery -->
-    <script src="{% static "js/jquery.js" %}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    {% endblock js %}
-
-</body>
-{% endblock body %}
-
-
-</html>
+{% endblock content %}

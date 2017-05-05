@@ -11,7 +11,10 @@ class LoginPageView(TemplateView):
 	template_name = "loginpage.html"
 
 class RegisterPageView(TemplateView):
-	template_name ="signup.html"
+	template_name = "signup.html"
 
 class MainFormView(TemplateView):
         template_name = "MainForm.html"
+
+class DashboardView(TemplateView):
+        template_name = "Dashboard.html"
