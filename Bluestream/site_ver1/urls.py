@@ -3,9 +3,8 @@ from site_ver1 import views, models
 
 urlpatterns = [
     url(r'^$',           views.HomePageView.as_view()),
-    url(r'^loginpage/$', views.LoginPageView.as_view()),
-    url(r'^signup/$',    views.RegisterPageView.as_view()),
     url(r'^mainform$',   views.MainFormView.as_view()),
     url(r'^dashboard$',  views.DashboardView.as_view()),
 	url(r'^signup$', views.whatever, name='submission'),
+	url(r'^loginpage$', views.loginattempt, name="login"),
 ]

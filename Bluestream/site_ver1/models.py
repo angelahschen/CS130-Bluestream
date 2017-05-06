@@ -9,4 +9,4 @@ MAX_NAME_LENGTH = 50
 class Person(models.Model):
 	name = models.CharField(max_length=MAX_NAME_LENGTH)
 	password = models.CharField(max_length=MAX_PASS_LENGTH)
-	email = models.EmailField(max_length=70,primary_key = True)
+	email = models.EmailField(max_length=70,primary_key = True, blank= False)
