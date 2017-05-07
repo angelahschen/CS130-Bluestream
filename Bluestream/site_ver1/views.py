@@ -6,7 +6,9 @@ from django.views.generic import TemplateView
 from django.urls import reverse
 from .models import Person
 from .forms import PersonForm, LoginForm
-from django.contrib import messages 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 class HomePageView(TemplateView):
 	template_name = "index.html"
@@ -29,6 +31,8 @@ def whatever(request):
 		if form.is_valid():
 			p = Person(name = form.cleaned_data["name"], password = form.cleaned_data["password"], email = form.cleaned_data["email"])
 			p.save()
+			u = User.objects.create_user(username = form.cleaned_data["email"], password = form.cleaned_data["password"])
+			u.save()
 			form = LoginForm()
 			return HttpResponseRedirect("/loginpage")
 	else:
@@ -39,8 +43,15 @@ def loginattempt(request):
 	if request.method == "POST":
 		form = LoginForm(request.POST)
 		if form.is_valid():
-			return redirect("/dashboard")
+			user = authenticate(username=form.cleaned_data["email"], password = form.cleaned_data["password"])
+			if user is not None:
+				login(request, user)
+				return redirect("/dashboard")
 	else:
 		form = LoginForm()
+	print(form)
 	return render(request, 'loginpage.html', {'form': form})
 	
+@login_required
+def dashboard(request):
+	return render(request, 'dashboard.html', {})

@@ -4,13 +4,12 @@
 	{% for error in form.errors %} 
 		<li>{{ error }}</li>
 	{% endfor %}
-	</ul>
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-        {{ form }}
-        </table>
-        <input type="submit" value="Submit" />
-    </form>
+	<form action="" method="post">
+    {% csrf_token %}
+	<table>
+    {{ form }}
+	</table>
+    <input type="submit" value="Submit" />
+</form>
 
 {% endblock %}

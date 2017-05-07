@@ -5,6 +5,7 @@ class PersonForm(forms.Form):
 	email = forms.EmailField(max_length = 100)
 	password = forms.CharField(max_length = 50)
 	repeat_password = forms.CharField(max_length = 50)
+	
 	def is_valid(self):
 		valid = super(PersonForm, self).is_valid()
 		if not valid:
@@ -15,6 +16,9 @@ class PersonForm(forms.Form):
 		if person:
 			self._errors["Email already in use"] = "Already email"
 		return not self._errors
+		
+	#def __str__(self):
+		
 	
 class LoginForm(forms.Form):
 	email = forms.EmailField(max_length = 100)
