@@ -49,7 +49,6 @@ def loginattempt(request):
 				return redirect("/dashboard")
 	else:
 		form = LoginForm()
-	print(form)
 	return render(request, 'loginpage.html', {'form': form})
 	
 @login_required
