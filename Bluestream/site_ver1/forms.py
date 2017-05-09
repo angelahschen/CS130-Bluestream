@@ -5,7 +5,12 @@ class PersonForm(forms.Form):
 	email = forms.EmailField(max_length = 100)
 	password = forms.CharField(max_length = 50)
 	repeat_password = forms.CharField(max_length = 50)
-	
+	options = (
+		("C", "Client"),
+		("R", "Regulatory Consultant"),
+	)
+	role = forms.MultipleChoiceField(choices = options)
+	phone_number = forms.RegexField(regex=r'^\+?1?\d{9,15}$')
 	def is_valid(self):
 		valid = super(PersonForm, self).is_valid()
 		if not valid:
