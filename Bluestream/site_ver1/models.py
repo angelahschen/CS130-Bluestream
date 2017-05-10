@@ -11,8 +11,8 @@ class Person(models.Model):
 	name = models.CharField(max_length=MAX_NAME_LENGTH)
 	password = models.CharField(max_length=MAX_PASS_LENGTH)
 	email = models.EmailField(max_length=70,primary_key = True, blank= False)
-	#role = models.CharField(max_length = 50)
-	#phone_number = models.CharField(max_length = 12)
+	role = models.CharField(max_length = 50)
+	phone_number = models.CharField(max_length = 12)
 	
 
 class Project(models.Model):
