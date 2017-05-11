@@ -25,6 +25,12 @@ class MainFormView(TemplateView):
 class DashboardView(TemplateView):
     template_name = "Dashboard.html"
 
+class DashboardSectionView(TemplateView):
+	template_name = "sectionlist.html"
+
+class DashboardMainView(TemplateView):
+	template_name = "test-main.html"
+
 def whatever(request):
 	if request.method == "POST":
 		form = PersonForm(request.POST)

@@ -7,4 +7,6 @@ urlpatterns = [
     url(r'^dashboard$',  views.dashboard),
 	url(r'^signup$', views.whatever, name='submission'),
 	url(r'^loginpage$', views.loginattempt, name="login"),
+	url(r'^sectionlist$',  views.DashboardSectionView.as_view()),
+    url(r'^test-main$',  views.DashboardMainView.as_view())
 ]
