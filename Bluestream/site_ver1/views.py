@@ -19,5 +19,8 @@ class MainFormView(TemplateView):
 class DashboardView(TemplateView):
         template_name = "Dashboard.html"
 
-class DashboardTaskView(TemplateView):
-	template_name = "tasklist.html"
+class DashboardSectionView(TemplateView):
+	template_name = "sectionlist.html"
+
+class DashboardMainView(TemplateView):
+	template_name = "test-main.html"
