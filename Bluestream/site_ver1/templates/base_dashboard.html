@@ -1,14 +1,29 @@
 {% extends "base.html" %}
+
+{% comment %}
+Inherits:
+    from base.html:
+        heading
+        body
+            topnavbar
+            content
+            js
+Overrides:
+    css
+{% endcomment %}
+
 {% load static %}
 
-{% block css %}
+{% block meta %}
     <meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+{% endblock meta %}
 
+{% block css %}
     <!-- Bootstrap core CSS     -->
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" />
 
@@ -21,9 +36,8 @@
 {% endblock css %}
 
 {% block body %}
-{% block sidebar %}
-
-{% endblock sidebar %}
+    <!--
+    {% block sidebar %}
     <div class="sidebar" data-color="blue">
 
 
@@ -44,16 +58,8 @@
             </ul>
     	</div>
     </div>
-{{ block.super }}
+    {% endblock sidebar %}
+    -->
+
+    {{ block.super }}
 {% endblock body %}
-
-
-{% comment %}
-Inherits:
-    from base.html:
-        heading
-        body
-            topnavbar
-            content
-            js
-{% endcomment %}

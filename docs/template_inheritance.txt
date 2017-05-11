@@ -1,0 +1,6 @@
+base.html
+    main wrapper html for the site
+
+base_dashboard.html
+    wrapper html for 510(k) form and sections
+    mainly adds a sidebar

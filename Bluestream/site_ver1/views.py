@@ -19,8 +19,13 @@ class LoginPageView(TemplateView):
 class RegisterPageView(TemplateView):
     template_name = "signup.html"
 
-class MainFormView(TemplateView):
-    #template_name = "MainForm.html"
+class DashboardView(TemplateView):
+    template_name = "Dashboard.html"
+
+class DashboardSectionView(TemplateView):
+    template_name = "sectionlist.html"
+
+class DashboardMainView(TemplateView):
     def get(self, request, *args, **kwargs):
         f = open(os.path.abspath('site_ver1/RTAdocs/QT1_1'), 'r')
         QT1_1=[]
@@ -39,13 +44,3 @@ class MainFormView(TemplateView):
             QT2.append(line)
         f.close()
         return render_to_response('MainForm.html', {'QT1': QT1, 'QT2': QT2})
-
-
-class DashboardView(TemplateView):
-    template_name = "Dashboard.html"
-
-class DashboardSectionView(TemplateView):
-    template_name = "sectionlist.html"
-
-class DashboardMainView(TemplateView):
-    template_name = "test-main.html"
