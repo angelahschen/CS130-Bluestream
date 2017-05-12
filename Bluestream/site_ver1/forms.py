@@ -87,7 +87,6 @@ class PersonForm(forms.Form):
 						value = ''
 				else:
 					value = ''
-				print(name, value)
 				output.append(normal_row % {
 					'errors': bf_errors,
 					'label': label,
@@ -148,9 +147,8 @@ class LoginForm(forms.Form):
 		return not self._errors
 	
 	def __str__(self):
-		#return "hi"
-		#print(self.fields)
-		return self._html_output(normal_row = '<div class="form-group"><input class="form-control" placeholder=%(name)s name=%(name)s autofocus></div>',
+		print(self._errors)
+		return self._html_output(normal_row = '<div class="form-group"><input class="form-control" placeholder=%(name)s name=%(name)s autofocus value=%(value)s></div>',
 			error_row='<tr><td colspan="2">%s</td></tr>',
             row_ender='',
             help_text_html='<br /><span class="helptext">%s</span>',
@@ -192,7 +190,13 @@ class LoginForm(forms.Form):
 					help_text = help_text_html % field.help_text
 				else:
 					help_text = ''
-
+				if hasattr(self, 'cleaned_data'):
+					if name in self.cleaned_data:
+						value = self.cleaned_data[name]
+					else:
+						value = ''
+				else:
+					value = ''
 				output.append(normal_row % {
 					'errors': bf_errors,
 					'label': label,
@@ -202,6 +206,7 @@ class LoginForm(forms.Form):
 					'css_classes': css_classes,
 					'field_name': bf.html_name,
 					'name': name,
+					'value': value,
 				})
 
 		if top_errors:
