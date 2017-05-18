@@ -5,9 +5,8 @@ import os
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect
 from django.views.generic import TemplateView
-from django.urls import reverse
-from .models import Person
-from .forms import PersonForm, LoginForm
+from .models import Person, Project
+from .forms import PersonForm, LoginForm, ProjectForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -79,6 +78,37 @@ def loginattempt(request):
 	return render(request, 'loginpage.html', {'form': form})
 	
 #TODO: consider using django.contrib.auth.mixins.LoginRequiredMixin
+def create_person(user):
+	return Person(email = user.username, password = user.password)
+	
 @login_required
 def dashboard(request):
-	return render(request, 'dashboard.html', {})
+	per = create_person(request.user)
+	projects = Project.objects.filter(creator = per)
+	data = []
+	for project in projects:
+		data.append({'name': project.proj_name})
+	return render(request, 'dashboard.html', {'projects': data})
+	
+@login_required
+def newproject(request):
+	print(request.user.password)
+	if request.method == "POST":
+		form = ProjectForm(request.POST)
+		if form.is_valid():
+			per = create_person(request.user)
+			proj = Project(creator = per, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"])
+			proj.save();
+			return HttpResponseRedirect("/dashboard")
+	else:
+		form = ProjectForm()
+	return render(request, 'newproject.html', {'form': form})
+	
+@login_required
+def showproject(request, name):
+	project = Project.objects.filter(proj_name = name)
+	if project:
+		return render(request, 'base_project.html', {'name': name})
+	else:
+		return render(request, 'error.html', {})
+	

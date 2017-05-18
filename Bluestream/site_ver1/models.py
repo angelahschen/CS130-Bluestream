@@ -16,6 +16,7 @@ class Person(models.Model):
 	
 
 class Project(models.Model):
+	creator = models.ForeignKey(Person)
 	proj_name = models.CharField(max_length = MAX_PROJ_LENGTH)
 	business_name = models.CharField(max_length = MAX_PROJ_LENGTH)
 	
