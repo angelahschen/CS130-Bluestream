@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<strong>Your Projects: </strong><br />
 {% for project in projects %} 
 <a class="btn btn-default btn-lg" href="project/{{project.name}}">{{ project.name }} </a><br />
 {% endfor %}

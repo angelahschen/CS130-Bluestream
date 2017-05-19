@@ -74,7 +74,6 @@ def loginattempt(request):
 				return redirect("/dashboard")
 	else:
 		form = LoginForm()
-	print(form)
 	return render(request, 'loginpage.html', {'form': form})
 	
 #TODO: consider using django.contrib.auth.mixins.LoginRequiredMixin
@@ -92,7 +91,6 @@ def dashboard(request):
 	
 @login_required
 def newproject(request):
-	print(request.user.password)
 	if request.method == "POST":
 		form = ProjectForm(request.POST)
 		if form.is_valid():
