@@ -106,9 +106,10 @@ def newproject(request):
 	
 @login_required
 def showproject(request, name):
-	project = Project.objects.filter(proj_name = name)
+	p = create_person(request.user)
+	project = Project.objects.filter(proj_name = name, creator = p)
 	if project:
 		return render(request, 'base_project.html', {'name': name})
 	else:
-		return render(request, 'error.html', {})
+		return HttpResponseRedirect("/dashboard")
 	
