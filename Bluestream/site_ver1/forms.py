@@ -156,7 +156,7 @@ class LoginForm(myForm):
 class ProjectForm(myForm):
 	proj_name = forms.CharField(max_length = MAX_PROJ_LENGTH)
 	business_name = forms.CharField(max_length = MAX_PROJ_LENGTH)
-	# email_recipient = forms.CharField(max_length=MAX_PROJ_LENGTH)
+	email_recipient = forms.CharField(max_length=MAX_PROJ_LENGTH)
 	
 	def __str__(self):
 		return self._html_output(normal_row = '<div class="form-group"><input class="form-control" placeholder=%(name)s name=%(name)s autofocus></div>',

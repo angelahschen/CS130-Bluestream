@@ -94,9 +94,9 @@ def newproject(request):
 		form = ProjectForm(request.POST)
 		if form.is_valid():
 			per = create_person(request.user)
-			proj = Project(creator = per, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"] )
+			proj = Project(creator = per, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"], email_recipient = form.cleaned_data["email_recipient"] )
 			proj.save();
-			email = EmailMessage(proj.business_name +' - ' + proj.proj_name , 'A project has just created a project for you by your Regulatory Consultant. Go to bluestream.com to check it out', to=['bluestreamtest298@gmail.com'])
+			email = EmailMessage(proj.business_name +' - ' + proj.proj_name , 'A project has just created a project for you by your Regulatory Consultant. Go to www.bluestream.com to get started', to=[proj.email_recipient])
 			email.send()
 			return HttpResponseRedirect("/dashboard")
 	else:
@@ -108,7 +108,7 @@ def showproject(request, name):
 	p = create_person(request.user)
 	project = Project.objects.filter(proj_name = name, creator = p)
 	if project:
-		return render(request, 'base_project.html', {'name': name})
+		return render(request, 'sectionlist.html', {'name': name})
 	else:
 		return HttpResponseRedirect("/dashboard")
 	

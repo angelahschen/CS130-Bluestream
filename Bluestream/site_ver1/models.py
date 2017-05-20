@@ -19,7 +19,7 @@ class Project(models.Model):
 	creator = models.ForeignKey(Person)
 	proj_name = models.CharField(max_length = MAX_PROJ_LENGTH)
 	business_name = models.CharField(max_length = MAX_PROJ_LENGTH)
-	#email_recipient = models.CharField(max_length = MAX_PROJ_LENGTH)
+	email_recipient = models.CharField(max_length = MAX_PROJ_LENGTH)
 	
 class ProjectMembers(models.Model):
 	project = models.ForeignKey(Project)
