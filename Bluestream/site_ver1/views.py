@@ -12,9 +12,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
-
-
-
 class HomePageView(TemplateView):
     template_name = "index.html"
 
@@ -54,9 +51,9 @@ def whatever(request):
 	if request.method == "POST":
 		form = PersonForm(request.POST)
 		if form.is_valid():
-			p = Person(name = form.cleaned_data["name"], password = form.cleaned_data["password"], email = form.cleaned_data["email"])
-			p.save()
 			u = User.objects.create_user(username = form.cleaned_data["email"], password = form.cleaned_data["password"])
+			u.person.role = form.cleaned_data["role"]
+			u.person.name = form.cleaned_data["name"]
 			u.save()
 			form = LoginForm()
 			return HttpResponseRedirect("/loginpage")
@@ -76,26 +73,22 @@ def loginattempt(request):
 		form = LoginForm()
 	return render(request, 'loginpage.html', {'form': form})
 	
-#TODO: consider using django.contrib.auth.mixins.LoginRequiredMixin
-def create_person(user):
-	return Person(email = user.username, password = user.password)
-	
+#TODO: consider using django.contrib.auth.mixins.LoginRequiredMixin	
 @login_required
 def dashboard(request):
-	per = create_person(request.user)
-	projects = Project.objects.filter(creator = per)
+	projects = Project.objects.filter(creator = request.user)
+	role = list(request.user.person.role)[2]
 	data = []
 	for project in projects:
 		data.append({'name': project.proj_name})
-	return render(request, 'dashboard.html', {'projects': data})
+	return render(request, 'dashboard.html', {'projects': data, 'role': role == 'R'})
 	
 @login_required
 def newproject(request):
 	if request.method == "POST":
 		form = ProjectForm(request.POST)
 		if form.is_valid():
-			per = create_person(request.user)
-			proj = Project(creator = per, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"])
+			proj = Project(creator = request.user, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"])
 			proj.save();
 			return HttpResponseRedirect("/dashboard")
 	else:
@@ -104,8 +97,7 @@ def newproject(request):
 	
 @login_required
 def showproject(request, name):
-	p = create_person(request.user)
-	project = Project.objects.filter(proj_name = name, creator = p)
+	project = Project.objects.filter(proj_name = name, creator = request.user)
 	if project:
 		return render(request, 'base_project.html', {'name': name})
 	else:

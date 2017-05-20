@@ -6,6 +6,8 @@
 {% for project in projects %} 
 <a class="btn btn-default btn-lg" href="project/{{project.name}}">{{ project.name }} </a><br />
 {% endfor %}
+{% if role %}
 <a class="btn btn-default btn-lg" href="newproject">Create New Project &raquo;</a>
+{% endif %}
 <!-- you need to include the shieldui css and js assets in order for the charts to work -->
 {% endblock content %}

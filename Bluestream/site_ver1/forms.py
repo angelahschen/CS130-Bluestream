@@ -12,7 +12,8 @@ from django.utils.html import conditional_escape, html_safe
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 from .models import Person
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 MAX_PASS_LENGTH = 20
 MAX_NAME_LENGTH = 50
 MAX_PROJ_LENGTH = 100
@@ -22,14 +23,9 @@ class myForm(forms.Form):
         #"Output HTML. Used by as_table(), as_ul(), as_p()."
 		top_errors = self.non_field_errors()  # Errors that should be displayed above all fields.
 		output, hidden_fields = [], []
-		print(self.data)
-		if hasattr(self, 'cleaned_data'):
-			print(self.cleaned_data)
 		for name, field in self.fields.items():
 			html_class_attr = ''
 			bf = self[name]
-			#print(self.cleaned_data)
-			#print(self.cleaned_data[name])
 			# Escape and cache in local variable.
 			bf_errors = self.error_class([conditional_escape(error) for error in bf.errors])
 			if bf.is_hidden:
@@ -65,7 +61,6 @@ class myForm(forms.Form):
 						value = ''
 				else:
 					value = ''
-				print(name, value)
 				output.append(normal_row % {
 					'errors': bf_errors,
 					'label': label,
@@ -108,6 +103,7 @@ class myForm(forms.Form):
                 # hidden fields.
 				output.append(str_hidden)
 		return mark_safe('\n'.join(output))
+#GOOD
 class PersonForm(myForm):
 	name = forms.CharField(max_length = 50)
 	email = forms.EmailField(max_length = 100)
@@ -125,11 +121,12 @@ class PersonForm(myForm):
 			return valid
 		if self.cleaned_data["password"] != self.cleaned_data["repeat_password"]:
 			self._errors['Passwords do not match'] = 'Bad Password'
-		person = Person.objects.filter(email = self.cleaned_data["email"])
+		person = User.objects.filter(username = self.cleaned_data["email"])
 		if person:
 			self._errors["Email already in use"] = "Already email"
 		return not self._errors
-	
+
+#GOOD
 class LoginForm(myForm):
 	email = forms.EmailField(max_length = 100)
 	password = forms.CharField(max_length = 50)
@@ -137,16 +134,12 @@ class LoginForm(myForm):
 		valid = super(LoginForm, self).is_valid()
 		if not valid:
 			return valid
-		person = Person.objects.filter(email = self.cleaned_data["email"])
-		if not person:
-			self._errors["Email does not exist"] = "No email"
-		if person and person[0].password != self.cleaned_data["password"]:
-			self._errors["Incorrect Password"] = "Incorrect Password"
+		user = authenticate(username=self.cleaned_data["email"], password = self.cleaned_data["password"])
+		if not user:
+			self._errors["Incorrect Account Data"] = "Wrong Login"
 		return not self._errors
 	
 	def __str__(self):
-		#return "hi"
-		#print(self.fields)
 		return self._html_output(normal_row = '<div class="form-group"><input class="form-control" placeholder=%(name)s name=%(name)s autofocus></div>',
 			error_row='<tr><td colspan="2">%s</td></tr>',
             row_ender='',
