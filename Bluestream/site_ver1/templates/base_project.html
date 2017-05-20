@@ -1,25 +1,5 @@
-{% extends "base.html" %}
+{% extends "base_dashboard.html" %}
 {% load static %}
-
-{% block css %}
-
-    <meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
-    <!-- Bootstrap core CSS     -->
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" />
-
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="{% static "css/light-bootstrap-dashboard.css" %}" rel="stylesheet"/>
-
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-{% endblock css %}
 
 {% block content %}
 <div class="wrapper">
@@ -34,11 +14,11 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
-                        <i class="pe-7s-graph"></i>
-                        <p>Projects</p>
+                    <a href="dashboard">
+                        <p>Project: {{ name }}</p>
                     </a>
                 </li>
+
             </ul>
     	</div>
     </div>
@@ -54,7 +34,6 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
-
 
 
                     </ul>
@@ -85,103 +64,80 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Project Information</h4>
-                            </div>
-                            <div class="content">
-                                <div class="table-full-width list-group">
-                                    <table class="table">
-                                        <tbody>
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6">
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">Tasks List</h4>
+                                <h4 class="title">Projects List</h4>
                                 <p class="category">Backend development</p>
                             </div>
                             <div class="content">
-                                <div class="table-full-width list-group">
+                                <div class="table-full-width">
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <input type="text" class="form-control add-todo" placeholder="Add New Task">
-                                            </tr>
 
-                                            <tr>
-
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-
-                                                <td><a href="#">Full MDUFA form</a></td>
+                                                <td><a href="sectionlist">Catheter</a></td>
                                                 <td class="td-actions text-right">
-                                                    <button type="button"  rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
 
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox" checked="">
-                                                    </label>
-                                                </td>
-                                                <td><a href="#">Section 3 -- Update Company Logo</a></td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
                                                     <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="fa fa-times"></i>
                                                     </button>
                                                 </td>
                                             </tr>
-
                                             <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td><a href="#">Complete RTA table from Section 3</a></td>
+
+                                                <td><a href="sectionlist">Syringe</a></td>
                                                 <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
+
                                                     <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                         <i class="fa fa-times"></i>
                                                     </button>
                                                 </td>
                                             </tr>
+                                            <tr>
 
+                                                <td><a href="#">Surgical suture</a></td>
+                                                <td class="td-actions text-right">
 
+                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
 
+                                                <td><a href="#">Infusion pump</a></td>
+                                                <td class="td-actions text-right">
 
+                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td><a href="#">Thermometer</a></td>
+                                                <td class="td-actions text-right">
+
+                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td><a href="#">Artificial cardiac pacemaker</a></td>
+                                                <td class="td-actions text-right">
+
+                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
 
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -202,9 +158,6 @@
 
     </div>
 </div>
+
 <!-- you need to include the shieldui css and js assets in order for the charts to work -->
-<<<<<<< HEAD
 {% endblock content %}
-=======
-{% endblock content %}
->>>>>>> login-stuff
