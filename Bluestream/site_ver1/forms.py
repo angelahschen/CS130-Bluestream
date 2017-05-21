@@ -103,7 +103,6 @@ class myForm(forms.Form):
                 # hidden fields.
 				output.append(str_hidden)
 		return mark_safe('\n'.join(output))
-#GOOD
 class PersonForm(myForm):
 	name = forms.CharField(max_length = 50)
 	email = forms.EmailField(max_length = 100)
@@ -125,8 +124,6 @@ class PersonForm(myForm):
 		if person:
 			self._errors["Email already in use"] = "Already email"
 		return not self._errors
-
-#GOOD
 class LoginForm(myForm):
 	email = forms.EmailField(max_length = 100)
 	password = forms.CharField(max_length = 50)
@@ -149,10 +146,27 @@ class LoginForm(myForm):
 class ProjectForm(myForm):
 	proj_name = forms.CharField(max_length = MAX_PROJ_LENGTH)
 	business_name = forms.CharField(max_length = MAX_PROJ_LENGTH)
-	
+	email_recipient = forms.CharField(max_length=MAX_PROJ_LENGTH, required = False)	
 	def __str__(self):
 		return self._html_output(normal_row = '<div class="form-group"><input class="form-control" placeholder=%(name)s name=%(name)s autofocus></div>',
 			error_row='<tr><td colspan="2">%s</td></tr>',
             row_ender='',
             help_text_html='<br /><span class="helptext">%s</span>',
             errors_on_separate_row=False)
+			
+	def is_valid(self):
+		valid = super(ProjectForm, self).is_valid()
+		if not valid:
+			return valid
+		if "email_recipient" in self.cleaned_data:
+			user = User.objects.filter(username = self.cleaned_data["email_recipient"])
+			if not user:
+				self._errors["No account exists with that email"] = True
+			is_client = False
+			for user in users:
+				if user.person.get_role() == "C":
+					is_client = True
+				break
+			if not is_client:
+				self._errors["You cannot assign projects to Regulatory Consultants"] = True
+		return not self._errors

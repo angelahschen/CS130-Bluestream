@@ -9,14 +9,15 @@ from django.db.models.signals import post_save
 MAX_PASS_LENGTH = 20
 MAX_NAME_LENGTH = 50
 MAX_PROJ_LENGTH = 100
+
 #GOOD
 class Person(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	name = models.CharField(max_length=MAX_NAME_LENGTH)
-	password = models.CharField(max_length=MAX_PASS_LENGTH)
-	email = models.EmailField(max_length=70)
 	role = models.CharField(max_length = 50)
 	phone_number = models.CharField(max_length = 12)
+	def get_role(self):
+		return list(self.role)[2]
 	
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -32,7 +33,7 @@ class Project(models.Model):
 	client = models.ForeignKey(User, related_name='Client_Assigned', blank=True, null=True)
 	proj_name = models.CharField(max_length = MAX_PROJ_LENGTH)
 	business_name = models.CharField(max_length = MAX_PROJ_LENGTH)
-	
+
 class ProjectMembers(models.Model):
 	project = models.ForeignKey(Project)
 	person = models.ForeignKey(Person)

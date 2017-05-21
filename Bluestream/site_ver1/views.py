@@ -10,8 +10,7 @@ from .forms import PersonForm, LoginForm, ProjectForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-# Create your views here.
-
+from django.core.mail import EmailMessage
 class HomePageView(TemplateView):
     template_name = "index.html"
 
@@ -55,7 +54,6 @@ def whatever(request):
 			u.person.role = form.cleaned_data["role"]
 			u.person.name = form.cleaned_data["name"]
 			u.save()
-			form = LoginForm()
 			return HttpResponseRedirect("/loginpage")
 	else:
 		form = PersonForm()
@@ -82,14 +80,21 @@ def dashboard(request):
 	for project in projects:
 		data.append({'name': project.proj_name})
 	return render(request, 'dashboard.html', {'projects': data, 'role': role == 'R'})
-	
 @login_required
 def newproject(request):
 	if request.method == "POST":
 		form = ProjectForm(request.POST)
 		if form.is_valid():
-			proj = Project(creator = request.user, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"])
+			per = create_person(request.user)
+			if "email_recipient" in form.cleaned_data:
+				clients = User.objects.filter(username = self.cleaned_data["email_recipient"])
+				for client in clients:
+					proj = Project(creator = request.user, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"], client = client)
+			else:
+				proj = Project(creator = request.user, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"])
 			proj.save();
+			email = EmailMessage(proj.business_name +' - ' + proj.proj_name , 'A project has just created a project for you by your Regulatory Consultant. Go to www.bluestream.com to get started', to=[proj.email_recipient])
+			email.send()
 			return HttpResponseRedirect("/dashboard")
 	else:
 		form = ProjectForm()
