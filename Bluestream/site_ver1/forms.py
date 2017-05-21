@@ -146,7 +146,7 @@ class LoginForm(myForm):
 class ProjectForm(myForm):
 	proj_name = forms.CharField(max_length = MAX_PROJ_LENGTH)
 	business_name = forms.CharField(max_length = MAX_PROJ_LENGTH)
-	email_recipient = forms.CharField(max_length=MAX_PROJ_LENGTH, required = False)	
+	email_recipient = forms.EmailField(max_length=MAX_PROJ_LENGTH, required = False)	
 	def __str__(self):
 		return self._html_output(normal_row = '<div class="form-group"><input class="form-control" placeholder=%(name)s name=%(name)s autofocus></div>',
 			error_row='<tr><td colspan="2">%s</td></tr>',
@@ -158,10 +158,11 @@ class ProjectForm(myForm):
 		valid = super(ProjectForm, self).is_valid()
 		if not valid:
 			return valid
-		if "email_recipient" in self.cleaned_data:
-			user = User.objects.filter(username = self.cleaned_data["email_recipient"])
-			if not user:
+		if self.cleaned_data["email_recipient"] != '':
+			users = User.objects.filter(username = self.cleaned_data["email_recipient"])
+			if not users:
 				self._errors["No account exists with that email"] = True
+				return False
 			is_client = False
 			for user in users:
 				if user.person.get_role() == "C":

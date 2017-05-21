@@ -74,7 +74,11 @@ def loginattempt(request):
 #TODO: consider using django.contrib.auth.mixins.LoginRequiredMixin	
 @login_required
 def dashboard(request):
-	projects = Project.objects.filter(creator = request.user)
+	role = request.user.person.get_role()
+	if role == 'R':
+		projects = Project.objects.filter(creator = request.user)
+	elif role == "C":
+		projects = Project.objects.filter(client = request.user)
 	role = list(request.user.person.role)[2]
 	data = []
 	for project in projects:
@@ -85,16 +89,15 @@ def newproject(request):
 	if request.method == "POST":
 		form = ProjectForm(request.POST)
 		if form.is_valid():
-			per = create_person(request.user)
-			if "email_recipient" in form.cleaned_data:
-				clients = User.objects.filter(username = self.cleaned_data["email_recipient"])
+			if form.cleaned_data["email_recipient"] != '':
+				clients = User.objects.filter(username = form.cleaned_data["email_recipient"])
 				for client in clients:
 					proj = Project(creator = request.user, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"], client = client)
+				email = EmailMessage(proj.business_name +' - ' + proj.proj_name , 'A project has just created a project for you by your Regulatory Consultant. Go to www.bluestream.com to get started', to=[form.cleaned_data["email_recipient"]])
+				email.send()
 			else:
 				proj = Project(creator = request.user, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"])
 			proj.save();
-			email = EmailMessage(proj.business_name +' - ' + proj.proj_name , 'A project has just created a project for you by your Regulatory Consultant. Go to www.bluestream.com to get started', to=[proj.email_recipient])
-			email.send()
 			return HttpResponseRedirect("/dashboard")
 	else:
 		form = ProjectForm()
@@ -102,7 +105,11 @@ def newproject(request):
 	
 @login_required
 def showproject(request, name):
-	project = Project.objects.filter(proj_name = name, creator = request.user)
+	role = request.user.person.get_role()
+	if role == "R":
+		project = Project.objects.filter(proj_name = name, creator = request.user)
+	else:
+		project = Project.objects.filter(proj_name = name, client = request.user)
 	if project:
 		return render(request, 'base_project.html', {'name': name})
 	else:
