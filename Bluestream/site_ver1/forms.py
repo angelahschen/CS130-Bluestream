@@ -234,4 +234,20 @@ class LoginForm(forms.Form):
                 # hidden fields.
 				output.append(str_hidden)
 		return mark_safe('\n'.join(output))
-		
+
+
+class CoverLetterForm(forms.Form):
+	cvl = forms.CharField(widget=forms.Textarea, label='coverletter', required=False)
+
+class Section4Form(forms.Form):
+	number = forms.CharField(label = '510K Number (if known)', max_length = 50, required=False)
+	device_name = forms.CharField(max_length = 50)
+	indication = forms.CharField(widget=forms.Textarea, label = 'Indications for use (Describe)')
+
+class Section5Form(forms.Form):
+	options = (
+		("510ksummary", "510K-Summary"),
+		("510kstatement", "510K-Statement"),
+	)
+	my_field = forms.ChoiceField(choices=options, label="",widget=forms.CheckboxSelectMultiple())
+	summary = forms.CharField(widget=forms.Textarea, label = 'summary')

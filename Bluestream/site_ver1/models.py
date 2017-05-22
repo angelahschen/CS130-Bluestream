@@ -25,4 +25,17 @@ class ProjectMembers(models.Model):
 
 class Roles:
 	role_name = models.CharField(max_length = MAX_NAME_LENGTH)
-	
+
+class FormSection3(models.Model):
+	project = models.ForeignKey(Project)
+	cvl = models.CharField(max_length = 5000)
+
+class FormSection4(models.Model):
+	project = models.ForeignKey(Project)
+	number = models.CharField(max_length = 20)
+	device_name = models.CharField(max_length = 200)
+	indication = models.CharField(max_length = 5000)
+
+class FormSection5(models.Model):
+	project = models.ForeignKey(Project)
+	summary = models.CharField(max_length = 5000)

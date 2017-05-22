@@ -206,24 +206,17 @@
 			</table>
 		</div>
 	
-		<hr>
-		<!--RTA tables-->
-		<h5>RTA checklist</h5>
-		<h6><b>Preliminary Questions</b></h6>
+	<br>
+	
+	
 	<form action="" method="post">
 		<!--section 3 coverletter-->
 		{% csrf_token %}
-		{{ form1 }}
-		<button type="submit" name="510k-coverletter" value="save">Save Changes</button>
-		<br/>
-
-		<!--section 5 summary-->
-		{% csrf_token %}
-		{{ form2 }}
-		<button type="submit" name="510k-summary" value="save">Save Changes</button>
-		<br/>
+		<table>
+        {{ form}}
+        </table>
+		<button type="submit" value="save">Save Changes</button>
 	</form>
-	
 	<br>
 
         <hr>
