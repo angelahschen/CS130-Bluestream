@@ -165,7 +165,7 @@ class ProjectForm(myForm):
 				return False
 			is_client = False
 			for user in users:
-				if user.person.get_role() == "C":
+				if user.person.role == "C":
 					is_client = True
 				break
 			if not is_client:

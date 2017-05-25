@@ -91,7 +91,7 @@ def whatever(request):
 		form = PersonForm(request.POST)
 		if form.is_valid():
 			u = User.objects.create_user(username = form.cleaned_data["email"], password = form.cleaned_data["password"])
-			u.person.role = form.cleaned_data["role"]
+			u.person.role = form.cleaned_data["role"][0]
 			u.person.name = form.cleaned_data["name"]
 			u.save()
 			return HttpResponseRedirect("/loginpage")
@@ -114,12 +114,11 @@ def loginattempt(request):
 #TODO: consider using django.contrib.auth.mixins.LoginRequiredMixin	
 @login_required
 def dashboard(request):
-	role = request.user.person.get_role()
+	role = request.user.person.role
 	if role == 'R':
 		projects = Project.objects.filter(creator = request.user)
 	elif role == "C":
 		projects = Project.objects.filter(client = request.user)
-	role = list(request.user.person.role)[2]
 	data = []
 	for project in projects:
 		data.append({'name': project.proj_name})
@@ -145,7 +144,7 @@ def newproject(request):
 	
 @login_required
 def showproject(request, name):
-	role = request.user.person.get_role()
+	role = request.user.person.role
 	if role == "R":
 		project = Project.objects.filter(proj_name = name, creator = request.user)
 	else:

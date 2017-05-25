@@ -16,8 +16,6 @@ class Person(models.Model):
 	name = models.CharField(max_length=MAX_NAME_LENGTH)
 	role = models.CharField(max_length = 50)
 	phone_number = models.CharField(max_length = 12)
-	def get_role(self):
-		return list(self.role)[2]
 	
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
