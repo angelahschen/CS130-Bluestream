@@ -110,7 +110,11 @@ def loginattempt(request):
 	else:
 		form = LoginForm()
 	return render(request, 'loginpage.html', {'form': form})
-	
+
+def logouttry(request):
+	if request.user.is_authenticated:
+		logout(request)
+	return HttpResponseRedirect("/loginpage")
 #TODO: consider using django.contrib.auth.mixins.LoginRequiredMixin	
 @login_required
 def dashboard(request):

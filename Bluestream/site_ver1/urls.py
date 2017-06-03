@@ -16,5 +16,5 @@ urlpatterns = [
 	url(r'^dashboard/project/(?P<name>[^/]+)/section3/$',   views.section3, name="section3"),
 	url(r'^dashboard/project/(?P<name>[^/]+)/section4/$',   views.section4, name="section4"),
 	url(r'^dashboard/project/(?P<name>[^/]+)/section5/$',   views.section5, name="section5"),
-
+	url(r'^logout/$', views.logouttry)
 ]
