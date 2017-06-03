@@ -64,7 +64,7 @@ def section3(request, name):
 	else:
 		form = CoverLetterForm()
 	
-	return render(request,'Section3.html', {'form': form, 'QT1': QT1, 'QT2': QT2})
+	return render(request,'Section3.html', {'form': form, 'QT1': QT1, 'QT2': QT2, 'name': name, 'section_name':"Section 3: RTA Checklist"})
 
 def section4(request, name):
 	if request.method == 'POST':
@@ -74,7 +74,7 @@ def section4(request, name):
 			p.save()
 	else:
 		form = Section4Form()
-	return render(request,'Section4.html', {'form': form})
+	return render(request,'Section4.html', {'form': form,'name': name, 'section_name':"Section 4: Indications for Use Statement"})
 
 def section5(request, name):
 	if request.method == 'POST':
@@ -84,7 +84,7 @@ def section5(request, name):
 			p.save()
 	else:
 		form = Section5Form()
-	return render(request,'Section5.html', {'form': form})
+	return render(request,'Section5.html', {'form': form, 'name': name, 'section_name':"Section 5: 510K Summary / 510K Statement" })
 
 def whatever(request):
 	if request.method == "POST":
@@ -132,7 +132,7 @@ def newproject(request):
 				clients = User.objects.filter(username = form.cleaned_data["email_recipient"])
 				for client in clients:
 					proj = Project(creator = request.user, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"], client = client)
-				email = EmailMessage(proj.business_name +' - ' + proj.proj_name , 'A project has just created a project for you by your Regulatory Consultant. Go to www.bluestream.com to get started', to=[form.cleaned_data["email_recipient"]])
+				email = EmailMessage(proj.business_name +' - ' + proj.proj_name , 'A project has just been created for you by your Regulatory Consultant. Go to www.bluestream.com to get started', to=[form.cleaned_data["email_recipient"]])
 				email.send()
 			else:
 				proj = Project(creator = request.user, proj_name = form.cleaned_data["proj_name"], business_name = form.cleaned_data["business_name"])
@@ -150,7 +150,11 @@ def showproject(request, name):
 	else:
 		project = Project.objects.filter(proj_name = name, client = request.user)
 	if project:
-		return render(request, 'base_project.html', {'name': name})
+		return render(request, 'sectionlist.html', {'name': name})
 	else:
 		return HttpResponseRedirect("/dashboard")
+
+def logout_view(request):
+    logout(request)
+
 	
