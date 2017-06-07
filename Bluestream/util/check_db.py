@@ -7,9 +7,9 @@ import sqlite3
 #           - add sqlite3 select statementsto select_strings
 #
 
-TEST_NUMBERS = [6]
+TEST_NUMBERS = [0, 3, 7]
 
-DB_PATH = '../db.sqlite3'
+DB_PATH = 'db.sqlite3'
 
 conn = sqlite3.connect(DB_PATH)
 c = conn.cursor()
@@ -35,7 +35,10 @@ select_strings = [
         'delete from site_ver1_formsection4 where id>=1',
 
         # (6) print all from section5 database
-        'select * from site_ver1_formsection5 where id>=3',
+        'select * from site_ver1_formsection5',
+
+        # (7) print all from section8 database
+        'select * from site_ver1_formsection8',
         ]
 
 for i in TEST_NUMBERS:

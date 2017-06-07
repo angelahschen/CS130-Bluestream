@@ -85,13 +85,13 @@
 	<form action="" method="post">
 		{% csrf_token %}
         <p>I certify that, in my capacity as {{form.position}} of {{form.company_name}}, 
-             that I have conducted a reasonable search of all information known or otherwise available about the types and causes of safety and/or effectiveness problems that have been reported for the {{form.device_name}}. I further certify that I am aware of the types of problems to which the {{form.device_name}} is susceptible and that, to the best of my knowledge, the following summary of the types and causes of safety and/or effectiveness problems about the {{form.device_name}} is complete and accurate.</p><br>
+        that I have conducted a reasonable search of all information known or otherwise available about the types and causes of safety and/or effectiveness problems that have been reported for the {{form.device_name}}. I further certify that I am aware of the types of problems to which the <b>{{dev_name}}</b> is susceptible and that, to the best of my knowledge, the following summary of the types and causes of safety and/or effectiveness problems about the <b>{{dev_name}}</b> is complete and accurate.</p><br>
              <p>
               {{form.summary_data}}
              </p>
           <br><br><br><br>
           <hr width=100px><br>
-          <u>{{form.signiture}}</u><br>
+          <u>{{form.signature}}</u><br>
           <p>(Signature of Certifier)<p>
          <u> {{form.certifier_name}}</u><br>
          <p>(Typed Name)</p>

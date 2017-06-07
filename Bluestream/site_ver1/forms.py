@@ -12,7 +12,7 @@ from django.utils.functional import cached_property
 from django.utils.html import conditional_escape, html_safe
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
-from .models import Person
+from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 MAX_PASS_LENGTH = 20
@@ -486,38 +486,48 @@ class CoverLetterForm(forms.Form):
 	
 	cvl = forms.CharField(widget=forms.Textarea, label='coverletter')
 
-class Section4Form(forms.Form):
-	number = forms.CharField(label = '510K Number (if known)', max_length = 50, required=False)
-	device_name = forms.CharField(max_length = 50)
-	indication = forms.CharField(widget=forms.Textarea, label = 'Indications for use (Describe)')
+class CDRHForm(forms.Form):
+	certification = forms.FileField(label = "Upload Filled in Form")
 
-class Section5Form(forms.Form):
-	options = (
-		("510ksummary", "510K-Summary"),
-		("510kstatement", "510K-Statement"),
-	)
-	my_field = forms.ChoiceField(choices=options, label="",widget=forms.CheckboxSelectMultiple())
-	summary = forms.CharField(widget=forms.Textarea, label = 'summary')
+class Section4Form(forms.ModelForm):
+        class Meta:
+            model   = FormSection4
+            exclude = ['project']
+            widgets = {'indication' : forms.Textarea}
 
-class Section6Form(forms.Form):
-	position = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Position held in company'}))
-	company_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Company Name'}))
-	signiture = forms.CharField()
-	submitter_name =forms.CharField()
-	date= forms.DateField(initial=datetime.date.today)
-	number = forms.CharField(max_length = 50, required=False)
+class Section5Form(forms.ModelForm):
+        class Meta:
+            model   = FormSection5
+            exclude = ['project']
+            widgets = {'summary' : forms.Textarea}
 
-class Section7Form(forms.Form):
-	position = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Position in company'}))
-	company_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Company Name'}))
-	device_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Device Name'}))
-	summary_data = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Attach the summary of problem data, bibliography or other citations upon which the summary is based.', 'rows':20, 'cols':80}))
-	signiture = forms.CharField()
-	certifier_name =forms.CharField()
-	date= forms.DateField(initial=datetime.date.today)
-	number = forms.CharField(max_length = 50, required=False)
+class Section6Form(forms.ModelForm):
+        class Meta:
+            model   = FormSection6
+            exclude = ['project']
+            widgets = {
+                'position'     : forms.TextInput(attrs = {'placeholder' : 'Position held in company'}),
+                'company_name' : forms.TextInput(attrs = {'placeholder' : 'Company Name'}),
+            }
 
+class Section7Form(forms.ModelForm):
+    class Meta:
+        model   = FormSection7
+        exclude = ['project']
+        widgets = {
+            'position'     : forms.TextInput(attrs = {'placeholder' : 'Position held in company'}),
+            'company_name' : forms.TextInput(attrs = {'placeholder' : 'Company Name'}),
+            'device_name'  : forms.TextInput(attrs = {'placeholder' : 'Device Name'}),
+            'summary_data' : forms.Textarea(
+                                attrs = {
+                                    'placeholder' : 'Attach the summary of problem data, bibliography or other citations upon which the summary is based.',
+                                    'rows'        : 20,
+                                    'cols'        : 80
+                                }
+                             ),
+        }
 
-class Section8Form(forms.Form):
-	certification = forms.FileField(label = "Select a file")
-	disclosure = forms.FileField(label = "Select a file")
+class Section8Form(forms.ModelForm):
+    class Meta:
+        model   = FormSection8
+        exclude = ['project', 'cert_filename', 'disc_filename']
