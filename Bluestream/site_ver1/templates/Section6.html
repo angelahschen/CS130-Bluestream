@@ -1,0 +1,145 @@
+{% extends "base_dashboard.html" %}
+{% load static %}
+
+{% block title %}Project Name 510(k){% endblock title %}
+
+{% block content %}
+
+
+
+<div class="wrapper">
+    <div class="sidebar" data-color="blue">
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.creative-tim.com" class="simple-text">
+                    Blue Stream
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="/dashboard">
+                        <p>Projects</p>
+                    </a>
+
+                        <ul>
+                            <a href="../sectionlist">
+		                    <p>Syringe</p>
+                            </a>
+                            <ul>
+                                <a href="#">
+		                        <p>RTA Checklist</p>
+                                </a>
+                            </ul>
+		                </ul>
+                </li>
+
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <!-- Navigation -->
+
+        <nav class="navbar navbar-inverse navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a href="">
+                               Account
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row ">
+                        <div class="card">
+                                 <div class="content">
+
+        <hr>
+
+
+    <!-- 510(k) Overview -->
+    <div class="form-overview">
+		<h2>510(k) Form</h2>
+    </div>
+	<form action="" method="post">
+		<!--section 5 coverletter-->
+		{% csrf_token %}
+        <p>I certify that, in my capacity as {{form.position}} of {{form.company_name}}, 
+            I believe to the best of my knowledge, that all data and information submitted in the premarket notification are truthful and
+          accurate and that no material fact has been omitted.</p>
+          <br><br><br><br>
+          <hr width=100px><br>
+          <u>{{form.signiture}}</u><br>
+          <p>(Signature)<p>
+         <u> {{form.submitter_name}}</u><br>
+         <p>(Typed Name)</p>
+         <u> {{form.date}}</u><br>
+         <p>(Date)</p>
+         <u> {{form.number}}</u><br>
+         <p>*(Premarket Notification [510(k)] Number)</p>
+         <br>
+         <p>*For a new submission, leave the 510(k) number blank.</p><br><br>
+         <p>Must be signed by a responsible person of the firm required to submit the premarket notification [e.g., not a consultant for the510(k) submitter].</p>
+         <br><br><br><br><br><br>
+         <p>J-1</p>
+		<button type="submit" value="save">submit</button>
+
+	</form>
+
+	<br>
+        {% if messages %}
+            {% for message in messages %}
+                 <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <hr>
+                                 </div>
+                        </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+
+                    </ul>
+                </nav>
+                <p class="copyright pull-right">
+                    &copy; 2017 Blue Stream</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+<!-- you need to include the shieldui css and js assets in order for the charts to work -->
+{% endblock content %}

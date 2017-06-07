@@ -1,0 +1,129 @@
+{% extends "base_dashboard.html" %}
+{% load static %}
+
+{% block title %}Project Name 510(k){% endblock title %}
+
+{% block content %}
+<div class="wrapper">
+    <div class="sidebar" data-color="blue">
+
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.creative-tim.com" class="simple-text">
+                    Blue Stream
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="/dashboard">
+                        <p>Projects</p>
+                    </a>
+
+                        <ul>
+                            <a href="../sectionlist">
+		                    <p>Syringe</p>
+                            </a>
+                            <ul>
+                                <a href="#">
+		                        <p>RTA Checklist</p>
+                                </a>
+                            </ul>
+		                </ul>
+                </li>
+
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <!-- Navigation -->
+
+        <nav class="navbar navbar-inverse navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a href="">
+                               Account
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row ">
+                        <div class="card">
+                                 <div class="content">
+
+        <hr>
+
+
+    <!-- 510(k) Overview -->
+    <div class="form-overview">
+		<h2>510(k) Form</h2>
+    </div>
+
+
+	<!--Section 4-->
+	
+	
+	
+	<form action="" method="post">
+		<!--section 5 coverletter-->
+		{% csrf_token %}
+		<table>
+        {{ form.as_table }}
+        </table>
+		<button type="submit" name="510k-coverletter" value="save">Save Changes</button>
+	</form>
+	<br>
+
+        <hr>
+                                 </div>
+                        </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+
+                    </ul>
+                </nav>
+                <p class="copyright pull-right">
+                    &copy; 2017 Blue Stream</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+<!-- you need to include the shieldui css and js assets in order for the charts to work -->
+{% endblock content %}
