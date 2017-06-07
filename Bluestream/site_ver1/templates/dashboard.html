@@ -27,7 +27,7 @@
                                         <tbody>
                                                 {% for project in projects %}
                                                     <tr>
-                                                    <td><a href="project/{{project.name}}">{{ project.name }} </a></td>
+                                                    <td><a href="project/{{project.name}}?id={{project.id}}">{{ project.name }} </a></td>
                                                     </tr>
                                                 {% endfor %}
                                         </tbody>
@@ -35,10 +35,10 @@
                                 </div>
                             </div>
                         </div>
-						{% if role %}
+                        {% if role %}
                     <a class="btn btn-default btn-lg" href="newproject">Create New Project &raquo;</a>
                     <a class="btn btn-danger btn-lg">Remove project</a>
-					{% endif %}
+                    {% endif %}
                     </div>
                 </div>
         </div>

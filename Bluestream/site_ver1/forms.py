@@ -1,3 +1,4 @@
+import datetime
 from django import forms
 
 from django.core.exceptions import NON_FIELD_ERRORS, ValidationError
@@ -188,3 +189,26 @@ class Section5Form(forms.Form):
 	)
 	my_field = forms.ChoiceField(choices=options, label="",widget=forms.CheckboxSelectMultiple())
 	summary = forms.CharField(widget=forms.Textarea, label = 'summary')
+
+class Section6Form(forms.Form):
+	position = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Position held in company'}))
+	company_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Company Name'}))
+	signiture = forms.CharField()
+	submitter_name =forms.CharField()
+	date= forms.DateField(initial=datetime.date.today)
+	number = forms.CharField(max_length = 50, required=False)
+
+class Section7Form(forms.Form):
+	position = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Position in company'}))
+	company_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Company Name'}))
+	device_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Device Name'}))
+	summary_data = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Attach the summary of problem data, bibliography or other citations upon which the summary is based.', 'rows':20, 'cols':80}))
+	signiture = forms.CharField()
+	certifier_name =forms.CharField()
+	date= forms.DateField(initial=datetime.date.today)
+	number = forms.CharField(max_length = 50, required=False)
+
+
+class Section8Form(forms.Form):
+	certification = forms.FileField(label = "Select a file")
+	disclosure = forms.FileField(label = "Select a file")

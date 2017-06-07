@@ -4,6 +4,9 @@
 {% block title %}Project Name 510(k){% endblock title %}
 
 {% block content %}
+
+
+
 <div class="wrapper">
     <div class="sidebar" data-color="blue">
 
@@ -23,7 +26,7 @@
 
                         <ul>
                             <a href="../">
-		                    <p> {{ name }}</p>
+		                    <p>{{ name }}</p>
                             </a>
                             <ul>
                                 <a href="#">
@@ -82,51 +85,44 @@
     <div class="form-overview">
 		<h2>{{ section_name }}</h2>
     </div>
-
-
-	<!--Section 4-->
-	
-	
-	
 	<form action="" method="post">
-		<!--section 3 coverletter-->
+		<!--section 5 coverletter-->
 		{% csrf_token %}
-		<table>
-        {{ form}}
-        </table>
-		<button type="submit" value="save">Save Changes</button>
-	</form>
-	<br>
+        <p>I certify that, in my capacity as {{form.position}} of {{form.company_name}}, 
+            I believe to the best of my knowledge, that all data and information submitted in the premarket notification are truthful and
+          accurate and that no material fact has been omitted.</p>
+          <br><br><br><br>
+          <hr width=100px><br>
+          <u>{{form.signiture}}</u><br>
+          <p>(Signature)<p>
+         <u> {{form.submitter_name}}</u><br>
+         <p>(Typed Name)</p>
+         <u> {{form.date}}</u><br>
+         <p>(Date)</p>
+         <u> {{form.number}}</u><br>
+         <p>*(Premarket Notification [510(k)] Number)</p>
+         <br>
+         <p>*For a new submission, leave the 510(k) number blank.</p><br><br>
+         <p>Must be signed by a responsible person of the firm required to submit the premarket notification [e.g., not a consultant for the510(k) submitter].</p>
+         <br><br><br><br><br><br>
+         <p>J-1</p>
+		<button type="submit" value="save">submit</button>
 
+	</form>
+
+	<br>
+        {% if messages %}
+            {% for message in messages %}
+                 <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
         <hr>
-                                     <button class="button">
-                                        Submit
-                                     </button>
                                  </div>
                         </div>
 
                 </div>
 
             </div>
-
-			<!--
-				<tr>
-					<td></td>
-					<td></td>
-					<td>
-					b. Device class and panel or Classification regulation or Statement that device
-					has not been classified with rationale for that conclusion
-					</td>
-					<td>
-						<input type="checkbox" name="myTextEditBox" value="checked" />
-					</td>
-					<td>
-						<input type="checkbox" name="myTextEditBox" value="checked" />
-					</td>
-					<td></td>
-					<td></td>
-				</tr>
-			-->
         </div>
 
 

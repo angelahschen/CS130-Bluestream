@@ -52,3 +52,26 @@ class FormSection4(models.Model):
 class FormSection5(models.Model):
 	project = models.ForeignKey(Project)
 	summary = models.CharField(max_length = 5000)
+
+class FormSection6(models.Model):
+	project = models.ForeignKey(Project)
+	position = models.CharField(max_length = 200)
+	company_name = models.CharField(max_length = 200)
+	submitter_name =models.CharField(max_length = 50)
+	date= models.DateField()
+	no_510k = models.CharField(max_length = 200, null=True, blank=True)
+
+class FormSection7(models.Model):
+	project = models.ForeignKey(Project)
+	position = models.CharField(max_length = 200)
+	company_name = models.CharField(max_length = 200)
+	certifier_name =models.CharField(max_length = 50)
+	device_name =models.CharField(max_length = 50)
+	summary_data =models.CharField(max_length = 5000)
+	date= models.DateField()
+	no_510k = models.CharField(max_length = 200, null=True, blank=True)
+
+class FormSection8(models.Model):
+	project = models.ForeignKey(Project)
+	certification = models.FileField()
+	disclosure = models.FileField()

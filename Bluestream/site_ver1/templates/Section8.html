@@ -23,7 +23,7 @@
 
                         <ul>
                             <a href="../">
-		                    <p> {{ name }}</p>
+		                    <p>{{ name }}</p>
                             </a>
                             <ul>
                                 <a href="#">
@@ -82,51 +82,34 @@
     <div class="form-overview">
 		<h2>{{ section_name }}</h2>
     </div>
-
-
-	<!--Section 4-->
-	
-	
-	
-	<form action="" method="post">
-		<!--section 3 coverletter-->
-		{% csrf_token %}
-		<table>
-        {{ form}}
-        </table>
-		<button type="submit" value="save">Save Changes</button>
-	</form>
+    <div class="RTA-tables form-section">
+    	<form action="" method="post">
+    		{% csrf_token %}
+            <table id="t01" border="0" width="900">
+                <tr>
+                    <th text-align="center" colspan="2">Please upload all necessary Financial Certification or Disclosure Statements</th>
+                </tr>
+                <tr>
+                    <td>Financial Certification Statements</td>
+                    <td>{{form.certification}}</td>
+                </tr>
+                <tr>
+                    <td>Financial Disclosure Statements</td>
+                    <td>{{form.disclosure}}</td>
+                </tr>
+            </table>
+    		<button type="submit" value="save">submit</button>
+    	</form>
+    </div>
 	<br>
 
         <hr>
-                                     <button class="button">
-                                        Submit
-                                     </button>
                                  </div>
                         </div>
 
                 </div>
 
             </div>
-
-			<!--
-				<tr>
-					<td></td>
-					<td></td>
-					<td>
-					b. Device class and panel or Classification regulation or Statement that device
-					has not been classified with rationale for that conclusion
-					</td>
-					<td>
-						<input type="checkbox" name="myTextEditBox" value="checked" />
-					</td>
-					<td>
-						<input type="checkbox" name="myTextEditBox" value="checked" />
-					</td>
-					<td></td>
-					<td></td>
-				</tr>
-			-->
         </div>
 
 
