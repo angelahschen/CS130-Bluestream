@@ -38,6 +38,10 @@ def section3(request, name):
     for line in f:
         QT2.append(line)
     f.close()
+    f = open(os.path.abspath('site_ver1/RTAdocs/QT3'), 'r')
+    QT3=[]
+    for line in f:
+        QT3.append(line)
     if request.method == 'POST':
         form = CoverLetterForm(request.POST)
         if form.is_valid():
@@ -46,7 +50,7 @@ def section3(request, name):
     else:
         form = CoverLetterForm()
 
-    return render(request,'Section3.html', {'form': form, 'QT1': QT1, 'QT2': QT2, 'name': name, 'section_name':"RTA checklist (in Section 3 after cover letter)"})
+    return render(request,'Section3.html', {'form': form, 'QT1': QT1, 'QT2': QT2, 'QT3': QT3, 'name': name, 'section_name':"RTA checklist (in Section 3 after cover letter)"})
 
 def section4(request, name):
     # TODO: do we need to revalidate the session project id? - it's server side, so it should be fine?
