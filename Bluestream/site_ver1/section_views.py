@@ -180,7 +180,7 @@ def section7(request, name):
         form = Section7Form(instance = previous)
 
     template_dev_name = form.fields['device_name'].widget.attrs['placeholder']
-    if (previous.device_name is not None):
+    if (previous is not None and previous.device_name is not None):
         template_dev_name = previous.device_name
 
     context = {
