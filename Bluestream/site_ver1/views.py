@@ -99,15 +99,15 @@ def newproject(request):
 def showproject(request, name):
     role = request.user.person.role
     project_id = int(request.GET['id'])
-    if role == "R":
-        project = Project.objects.filter(id = project_id, creator = request.user)
+    if role == 'R':
+        project = Project.objects.filter(id = project_id, creator = request.user).first()
     else:
-        project = Project.objects.filter(id = project_id, client = request.user)
+        project = Project.objects.filter(id = project_id, client = request.user).first()
     if project:
         request.session['project_id'] = project_id
         return render(request, 'sectionlist.html', {'name': name, 'id': project_id})
     else:
-        return HttpResponseRedirect("/dashboard")
+        return HttpResponseRedirect('/dashboard')
 
 def logout_view(request):
     logout(request)
