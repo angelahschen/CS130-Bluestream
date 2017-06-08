@@ -10,6 +10,7 @@
 <div class="wrapper">
     <div class="sidebar" data-color="blue">
 
+
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text">
@@ -19,17 +20,17 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="/dashboard">
+                    <a href="/dashboard ">
                         <p>Projects</p>
                     </a>
 
                         <ul>
-                            <a href="../sectionlist">
-		                    <p>Syringe</p>
+                            <a href="../">
+		                    <p>{{ name }}</p>
                             </a>
                             <ul>
                                 <a href="#">
-		                        <p>RTA Checklist</p>
+		                        <p>{{ section_name }}</p>
                                 </a>
                             </ul>
 		                </ul>
@@ -82,7 +83,7 @@
 
     <!-- 510(k) Overview -->
     <div class="form-overview">
-		<h2>510(k) Form</h2>
+		<h2>{{ section_name }}</h2>
     </div>
 	<form action="" method="post">
 		<!--section 5 coverletter-->
@@ -92,7 +93,7 @@
           accurate and that no material fact has been omitted.</p>
           <br><br><br><br>
           <hr width=100px><br>
-          <u>{{form.signiture}}</u><br>
+          <u>{{form.signature}}</u><br>
           <p>(Signature)<p>
          <u> {{form.submitter_name}}</u><br>
          <p>(Typed Name)</p>
@@ -110,11 +111,24 @@
 	</form>
 
 	<br>
-        {% if messages %}
-            {% for message in messages %}
-                 <p>{{ message }}</p>
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
             {% endfor %}
         {% endif %}
+        
         <hr>
                                  </div>
                         </div>

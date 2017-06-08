@@ -17,17 +17,16 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="/dashboard">
+                    <a href="/dashboard ">
                         <p>Projects</p>
                     </a>
-
                         <ul>
-                            <a href="../sectionlist">
-		                    <p>Syringe</p>
+                            <a href="../">
+		                    <p>{{ name }}</p>
                             </a>
                             <ul>
                                 <a href="#">
-		                        <p>RTA Checklist</p>
+		                        <p>{{ section_name }}</p>
                                 </a>
                             </ul>
 		                </ul>
@@ -80,143 +79,387 @@
 
     <!-- 510(k) Overview -->
     <div class="form-overview">
-		<h2>510(k) Form</h2>
+		<h2>{{ section_name }}</h2>
     </div>
 
 
 	<!--Section 3-->
 	
-		<div class="RTA-tables form-section">
-			<h4>Section 3</h4>
-			<h5>Cover Letter</h5>
-			<!--RTA tables-->
-			<h5>RTA checklist</h5>
-			<h6><b>Preliminary Questions</b></h6>
-			<table id="t01" border="1" width="900">
-				<tr>
-					<td colspan="5">
-						Answers in the shaded blocks indicate consultation with a Center advisor is needed. (Boxes checked in this section represent FDAs preliminary 
-						assessment of these questions at the time of administrative review.)
-					</td>
-				</tr>
-
-				<tr>
-					<th></th>
-					<th>Yes</th>
-					<th>No</th>
-					<th>N/A</th>
-				</tr>
-				{% for i, j in QT1|slice:":2" %}
-					<tr>
-						<td><b>{{i}}</b><br><br>{{j}}</td>
-						<td><input type="checkbox" name="myTextEditBox" value="checked"></td>
-						<td bgcolor="#A9A9A9"> <input type="checkbox" name="myTextEditBox" value="checked"></td>
-						<td> <input type="text" name="fname"></td>
-					</tr>
-				{% endfor %}
-					
-				<tr>
-					<td><b>{{QT1.2.0}}</b><br><br>{{QT1.2.1}}</td>
-					<td><input type="checkbox" name="myTextEditBox" value="checked"></td>
-					<td bgcolor="#A9A9A9"> <input type="checkbox" name="myTextEditBox" value="checked"></td>
-					<td><input type="checkbox" name="myTextEditBox" value="checked"></td>
-				</tr>
-
-				<tr>
-					<td><b>{{QT1.3.0}}</b><br><br>{{QT1.3.1}}</td>
-					<td><input type="checkbox" name="myTextEditBox" value="checked"></td>
-					<td bgcolor="#A9A9A9"> <input type="checkbox" name="myTextEditBox" value="checked"></td>
-					<td> <input type="text" name="fname"></td>
-				</tr>
-				
-				<tr>
-					<td><b>{{QT1.4.0}}</b><br><br>{{QT1.4.1}}</td>
-					<td bgcolor="#A9A9A9"> <input type="checkbox" name="myTextEditBox" value="checked"></td>
-					<td><input type="checkbox" name="myTextEditBox" value="checked"></td>
-					<td> <input type="text" name="fname"></td>
-				</tr>
-
-				<tr>
-					<td><b>{{QT1.5.0}}</b><br><br>{{QT1.5.1}}</td>
-					<td bgcolor="#A9A9A9"> <input type="checkbox" name="myTextEditBox" value="checked"></td>
-					<td><input type="checkbox" name="myTextEditBox" value="checked"></td>
-					<td> <input type="text" name="fname"></td>
-				</tr>
-
-			</table>
-
-			<br>
-			<h6><b>Organizational Elements</b></h6>
-			<table id="t02" border="1" width="900">
-				<tr>
-					<td colspan="5">
-						Failure to include these items should not result in an RTA designation.
-					</td>
-				</tr>
-				<tr>
-					<th>
-						*Submitters including the checklist with their submission should identify the page numbers where requested information is located. Use the comments
-						section for an element if additional space is needed to identify the location of supporting information.
-					</th>
-					<th>Yes</th>
-					<th>No</th>
-					<th>*page#</th>
-				</tr>
-				
-				{% for i in QT2%}
-					<tr>
-						<td>{{i}}</td>
-						<td><input type="checkbox" name="myTextEditBox" value="checked"></td>
-						<td><input type="checkbox" name="myTextEditBox" value="checked"></td>
-						<td> <input type="text" name="fname"></td>
-					</tr>
-				{% endfor %}
-			</table>
+	<div class="RTA-tables form-section">
+		
+		<form action="" method="post">
+			{% csrf_token %}
+			<h4>Cover Letter:</h4>
+			{{form.cvl}}<br>
 			
-
-			<br>
-			<h6><b>Elements of a Complete Submission (RTA Items) (21 CFR 807.87 unless otherwise indicated)</b></h6>
-			<table id="t03" border="1" width="900">
-				<tr>
-					<td colspan="7">
-					Any "No" answer will result in a "Refuse to Accept" decision; however, FDA staff has discretion to
-					determine whether missing items are needed to ensure that the submission is administratively
-					complete to allow the submission to be accepted or to request missing checklist items interactively
-					from submitters during the RTA review. <br><br>
-					Each element on the checklist should be addressed within the submission. The submitter may
-					provide a rationale for omission for any criteria that are deemed not applicable. If a rationale is
-					provided, the criterion is considered present (Yes). An assessment of the rationale will be considered
-					during the review of the submission.
-					</td>
-				</tr>
-				<tr>
-					<th colspan="3">
-					<b>Check "Yes" if item is present, "N/A" if it is not needed and "No" if it is
-					not included but needed. <br><br>
-					*Submitters including the checklist with their submission should
-					identify the page numbers where requested information is located. Use
-					the comments section for an element if additional space is needed to
-					identify the location of supporting information.</b>
-					</th>
-					<th>Yes</th>
-					<th>No</th>
-					<th>N/A</th>
-					<th>*page#</th>
-				</tr>
-			</table>
-		</div>
-	
-	<br>
-	
-	
-	<form action="" method="post">
-		<!--section 3 coverletter-->
-		{% csrf_token %}
-		<table>
-        {{ form}}
-        </table>
-		<button type="submit" value="save">Save Changes</button>
-	</form>
+			<h4>RTA checklist:</h4>
+			<h5><b>Preliminary Questions</b></h5>
+			<b>{{QT1.0.0}}</b><br><br>{{QT1.0.1}}<br>
+			{{form.RTA1_2}}<br><br>
+			<b>{{QT1.1.0}}</b><br><br>{{QT1.1.1}}<br>
+			{{form.RTA1_2}}<br><br>
+			<b>{{QT1.2.0}}</b><br><br>{{QT1.2.1}}<br>
+			{{form.RTA1_3}}<br><br>
+			<b>{{QT1.3.0}}</b><br><br>{{QT1.3.1}}<br>
+			{{form.RTA1_4}}<br><br>
+			<b>{{QT1.4.0}}</b><br><br>{{QT1.4.1}}<br>
+			{{form.RTA1_5}}<br><br>
+			<b>{{QT1.5.0}}</b><br><br>{{QT1.5.1}}<br>
+			{{form.RTA1_6}}<br><br><br>
+			
+			<h5><b>Organizational Elements</b></h5>
+			<b>Failure to include these items should not result in an RTA designation.
+			*Submitters including the checklist with their submission should identify the page numbers where requested information is located. Use the comments
+			section for an element if additional space is needed to identify the location of supporting information.</b><br><br>
+			{{QT2.0}}
+			{{form.RTA2_1}}<br><br>
+			*page #: {{form.RTA2_pg_1}}<br><br>
+			{{QT2.1}}
+			{{form.RTA2_2}}<br><br>
+			*page #: {{form.RTA2_pg_2}}<br><br>
+			{{QT2.2}}
+			{{form.RTA2_3}}<br><br>
+			*page #: {{form.RTA2_pg_3}}<br><br>
+			{{QT2.3}}
+			{{form.RTA2_4}}<br><br>
+			*page #: {{form.RTA2_pg_4}}<br><br><br>
+			
+			
+			<h5><b>Elements of a Complete Submission (RTA Items) (21 CFR 807.87 unless otherwise indicated)</b></h5>
+				
+			Any "No" answer will result in a "Refuse to Accept" decision; however, FDA staff has discretion to determine whether missing items 
+			are needed to ensure that the submission is administratively complete to allow the submission to be accepted or to request missing 
+			checklist items interactively from submitters during the RTA review. <br><br>
+			Each element on the checklist should be addressed within the submission. The submitter may provide a rationale for omission for any 
+			criteria that are deemed not applicable. If a rationale is provided, the criterion is considered present (Yes). An assessment of the 
+			rationale will be considered during the review of the submission.
+			
+			Check “Yes” if item is present, “N/A” if it is not needed and “No” if it is not included but needed. *Submitters including the checklist 
+			with their submission should identify the page numbers where requested information is located. Use the comments section for an element if 
+			additional space is needed to identify the location of supporting information.
+			
+			<br><br>
+			<b>A. Administrative</b><br><br>
+			{{QT3.0}}
+			{{form.RTA3_1}}<br><br>
+			*page #: {{form.RTA3_pg_1}}<br><br>
+			{{QT3.1}}<br><br>
+			{{QT3.2}}
+			{{form.RTA3_2_1}}<br><br>
+			*page #: {{form.RTA3_pg_2_1}}<br><br>
+			{{QT3.3}}
+			{{form.RTA3_2_2}}<br><br>
+			*page #: {{form.RTA3_pg_2_2}}<br><br>
+			{{QT3.4}}
+			{{form.RTA3_3}}<br><br>
+			*page #: {{form.RTA3_pg_3}}<br><br>
+			{{QT3.5}}
+			{{form.RTA3_4}}<br><br>
+			*page #: {{form.RTA3_pg_4}}<br><br>
+			{{QT3.6}}
+			{{form.RTA3_5}}<br><br>
+			*page #: {{form.RTA3_pg_5}}<br><br>
+			{{QT3.7}}
+			{{form.RTA3_6}}<br><br>
+			*page #: {{form.RTA3_pg_6}}<br><br>
+			{{QT3.8}}
+			{{form.RTA3_6_1}}<br><br>
+			*page #: {{form.RTA3_pg_6_1}}<br><br>
+			{{QT3.9}}
+			{{form.RTA3_7}}<br><br>
+			*page #: {{form.RTA3_pg_7}}<br><br>
+			{{QT3.10}}
+			{{form.RTA3_7_1}}<br><br>
+			*page #: {{form.RTA3_pg_7_1}}<br><br>
+			{{QT3.11}}
+			{{form.RTA3_7_2}}<br><br>
+			*page #: {{form.RTA3_pg_7_2}}<br><br>
+			{{QT3.12}}
+			{{form.RTA3_8}}<br><br>
+			*page #: {{form.RTA3_pg_8}}<br><br>
+			{{QT3.13}}
+			{{form.RTA3_8_1}}<br><br>
+			*page #: {{form.RTA3_pg_8_1}}<br><br>
+			
+			<b>B. Device Description</b><br><br>
+			{{QT3.14}}
+			{{form.RTA3_9}}<br><br>
+			*page #: {{form.RTA3_pg_9}}<br><br>
+			{{QT3.15}}
+			{{form.RTA3_9_1}}<br><br>
+			*page #: {{form.RTA3_pg_9_1}}<br><br>
+			{{QT3.16}}
+			{{form.RTA3_9_2}}<br><br>
+			*page #: {{form.RTA3_pg_9_2}}<br><br>
+			{{QT3.17}}
+			{{form.RTA3_10}}<br><br>
+			*page #: {{form.RTA3_pg_10}}<br><br>
+			{{QT3.18}}<br><br>
+			{{QT3.19}}
+			{{form.RTA3_11_1}}<br><br>
+			*page #: {{form.RTA3_pg_11_1}}<br><br>
+			{{QT3.20}}
+			{{form.RTA3_11_2}}<br><br>
+			*page #: {{form.RTA3_pg_11_2}}<br><br>
+			{{QT3.21}}
+			{{form.RTA3_11_3}}<br><br>
+			*page #: {{form.RTA3_pg_11_3}}<br><br>
+			{{QT3.22}}
+			{{form.RTA3_11_4}}<br><br>
+			*page #: {{form.RTA3_pg_11_4}}<br><br>
+			{{QT3.23}}
+			{{form.RTA3_12}}<br><br>
+			*page #: {{form.RTA3_pg_12}}<br><br>
+			{{QT3.24}}
+			{{form.RTA3_12_1}}<br><br>
+			*page #: {{form.RTA3_pg_12_1}}<br><br>
+			{{QT3.25}}
+			{{form.RTA3_12_2}}<br><br>
+			*page #: {{form.RTA3_pg_12_2}}<br><br>
+			{{QT3.26}}
+			{{form.RTA3_12_3}}<br><br>
+			*page #: {{form.RTA3_pg_12_3}}<br><br>
+			
+			<b>C. Substantial Equivalence Discussion</b><br><br>
+			{{QT3.27}}<br><br>
+			{{QT3.28}}
+			{{form.RTA3_13_1}}<br><br>
+			*page #: {{form.RTA3_pg_13_1}}<br><br>
+			{{QT3.29}}
+			{{form.RTA3_13_2}}<br><br>
+			*page #: {{form.RTA3_pg_13_2}}<br><br>
+			{{QT3.30}}<br><br>
+			{{QT3.31}}
+			{{form.RTA3_14_1}}<br><br>
+			*page #: {{form.RTA3_pg_14_1}}<br><br>
+			{{QT3.32}}
+			{{form.RTA3_14_2}}<br><br>
+			*page #: {{form.RTA3_pg_14_2}}<br><br>
+			
+			<b>D. Proposed Labeling</b><br><br>
+			{{QT3.33}}
+			{{form.RTA3_15}}<br><br>
+			*page #: {{form.RTA3_pg_15}}<br><br>
+			{{QT3.34}}
+			{{form.RTA3_15_1}}<br><br>
+			*page #: {{form.RTA3_pg_15_1}}<br><br>
+			{{QT3.35}}
+			{{form.RTA3_15_2}}<br><br>
+			*page #: {{form.RTA3_pg_15_2}}<br><br>
+			{{QT3.36}}
+			{{form.RTA3_16}}<br><br>
+			*page #: {{form.RTA3_pg_16}}<br><br>
+			{{QT3.37}}
+			{{form.RTA3_17}}<br><br>
+			*page #: {{form.RTA3_pg_17}}<br><br>
+			{{QT3.38}}
+			{{form.RTA3_18}}<br><br>
+			*page #: {{form.RTA3_pg_18}}<br><br>
+			{{QT3.39}}
+			{{form.RTA3_18_1}}<br><br>
+			*page #: {{form.RTA3_pg_18_1}}<br><br>
+			{{QT3.40}}
+			{{form.RTA3_18_2}}<br><br>
+			*page #: {{form.RTA3_pg_18_2}}<br><br>
+			{{QT3.41}}
+			{{form.RTA3_19}}<br><br>
+			*page #: {{form.RTA3_pg_19}}<br><br>
+			
+			<b>E. Sterilization</b><br><br>
+			{{QT3.42}}<br>
+			{{form.RTA3_E}}
+			*page #: {{form.RTA3_pg_E}}<br><br>
+			{{QT3.43}}<br><br>
+			{{QT3.44}}<br>
+			{{QT3.45}}<br>
+			{{QT3.46}}<br>
+			{{QT3.47}}<br><br>
+			{{QT3.48}}<br><br>
+			{{QT3.49}}<br><br>
+			{{QT3.50}}
+			{{form.RTA3_20_1}}<br><br>
+			*page #: {{form.RTA3_pg_20_1}}<br><br>
+			{{QT3.51}}
+			{{form.RTA3_20_2}}<br><br>
+			*page #: {{form.RTA3_pg_20_2}}<br><br>
+			{{QT3.52}}
+			{{form.RTA3_20_3}}<br><br>
+			*page #: {{form.RTA3_pg_20_3}}<br><br>
+			{{QT3.53}}
+			{{form.RTA3_21}}
+			*page #: {{form.RTA3_pg_21}}<br><br>
+			{{QT3.54}}
+			{{form.RTA3_21_1}}<br><br>
+			*page #: {{form.RTA3_pg_21_1}}<br><br>
+			{{QT3.55}}
+			{{form.RTA3_21_2}}<br><br>
+			*page #: {{form.RTA3_pg_21_2}}<br><br>
+			{{QT3.56}}
+			{{form.RTA3_21_3}}<br><br>
+			*page #: {{form.RTA3_pg_21_3}}<br><br>
+			{{QT3.57}}
+			{{form.RTA3_21_4}}<br><br>
+			*page #: {{form.RTA3_pg_21_4}}<br><br>
+			{{QT3.58}}
+			{{form.RTA3_21_5}}<br><br>
+			*page #: {{form.RTA3_pg_21_5}}<br><br>
+			{{QT3.59}}
+			{{form.RTA3_21_6}}<br><br>
+			*page #: {{form.RTA3_pg_21_6}}<br><br>
+			{{QT3.60}}
+			{{form.RTA3_22}}
+			*page #: {{form.RTA3_pg_22}}<br><br>
+			{{QT3.61}}
+			{{form.RTA3_22_1}}<br><br>
+			*page #: {{form.RTA3_pg_22_1}}<br><br>
+			{{QT3.62}}
+			{{form.RTA3_22_2}}<br><br>
+			*page #: {{form.RTA3_pg_22_2}}<br><br>
+			{{QT3.63}}
+			{{form.RTA3_22_3}}<br><br>
+			*page #: {{form.RTA3_pg_22_3}}<br><br>
+			{{QT3.64}}
+			{{form.RTA3_22_4}}<br><br>
+			*page #: {{form.RTA3_pg_22_4}}<br><br>
+			{{QT3.65}}
+			{{form.RTA3_22_4_1}}<br><br>
+			*page #: {{form.RTA3_pg_22_4_1}}<br><br>
+			{{QT3.66}}
+			{{form.RTA3_23}}<br><br>
+			*page #: {{form.RTA3_pg_23}}<br><br>
+			{{QT3.67}}
+			{{form.RTA3_23_1}}<br><br>
+			*page #: {{form.RTA3_pg_23_1}}<br><br>
+			{{QT3.68}}
+			{{form.RTA3_23_2}}<br><br>
+			*page #: {{form.RTA3_pg_23_2}}<br><br>
+			
+			<b>F. Shelf Life</b><br><br>
+			{{QT3.69}}
+			{{form.RTA3_24}}<br><br>
+			*page #: {{form.RTA3_pg_24}}<br><br>
+			{{QT3.70}}
+			{{form.RTA3_25}}<br><br>
+			*page #: {{form.RTA3_pg_25}}<br><br>
+			{{QT3.71}}
+			{{form.RTA3_26}}<br><br>
+			*page #: {{form.RTA3_pg_26}}<br><br>
+			
+			<b>G. Biocompatibility</b><br><br>
+			{{QT3.72}}<br>
+			{{QT3.73}}<br>
+			{{form.RTA3_G}}<br>
+			*page #: {{form.RTA3_pg_G}}<br><br>
+			{{QT3.74}}<br><br>
+			{{QT3.75}}<br>
+			{{form.RTA3_27}}<br><br>
+			*page #: {{form.RTA3_pg_27}}<br><br>
+			{{QT3.76}}
+			{{form.RTA3_28}}<br><br>
+			*page #: {{form.RTA3_pg_28}}<br><br>
+			{{QT3.77}}
+			{{form.RTA3_29}}<br><br>
+			*page #: {{form.RTA3_pg_29}}<br><br>
+			
+			<b>H. Software</b><br><br>
+			{{QT3.78}}
+			{{form.RTA3_H}}
+			*page #: {{form.RTA3_pg_H}}<br><br>
+			{{QT3.79}}<br><br>
+			{{QT3.80}}
+			{{form.RTA3_30}}<br><br>
+			*page #: {{form.RTA3_pg_30}}<br><br>
+			{{QT3.81}}
+			{{form.RTA3_31}}<br><br>
+			*page #: {{form.RTA3_pg_31}}<br><br>
+			
+			<b>I. Electrical Safety and EMC</b><br><br>
+			{{QT3.82}}
+			{{form.RTA3_I}}
+			*page #: {{form.RTA3_pg_I}}<br><br>
+			{{QT3.83}}<br><br>
+			{{QT3.84}}
+			{{form.RTA3_32}}<br><br>
+			*page #: {{form.RTA3_pg_32}}<br><br>
+			{{QT3.85}}
+			{{form.RTA3_EMC}}
+			*page #: {{form.RTA3_pg_EMC}}<br><br>
+			{{QT3.86}}<br><br>
+			{{QT3.87}}
+			{{form.RTA3_33}}<br><br>
+			*page #: {{form.RTA3_pg_33}}<br><br>
+			
+			<b>J. Performance Data General</b><br><br>
+			{{QT3.88}}
+			{{form.RTA3_J}}
+			{{QT3.89}}
+			{{form.RTA3_34}}<br><br>
+			*page #: {{form.RTA3_pg_34}}<br><br>
+			{{QT3.90}}
+			{{form.RTA3_34_1}}<br><br>
+			*page #: {{form.RTA3_pg_34_1}}<br><br>
+			{{QT3.91}}
+			{{form.RTA3_35}}<br><br>
+			*page #: {{form.RTA3_pg_35}}<br><br>
+			{{QT3.92}}
+			{{form.RTA3_35_1}}<br><br>
+			*page #: {{form.RTA3_pg_35_1}}<br><br>
+			{{QT3.93}}
+			{{form.RTA3_35_2}}<br><br>
+			*page #: {{form.RTA3_pg_35_2}}<br><br>
+			{{QT3.94}}
+			{{form.RTA3_36}}
+			*page #: {{form.RTA3_pg_36}}<br>
+			{{QT3.95}}
+			{{form.RTA3_36_1}}<br><br>
+			*page #: {{form.RTA3_pg_36_1}}<br><br>
+			{{QT3.96}}
+			{{form.RTA3_36_2}}<br><br>
+			*page #: {{form.RTA3_pg_36_2}}<br><br>
+			{{QT3.97}}
+			{{form.RTA3_37}}
+			*page #: {{form.RTA3_pg_37}}<br>
+			{{QT3.98}}
+			{{form.RTA3_37_1}}<br><br>
+			*page #: {{form.RTA3_pg_37_1}}<br><br>
+			{{QT3.99}}
+			{{form.RTA3_37_2}}<br><br>
+			*page #: {{form.RTA3_pg_37_2}}<br><br>
+			{{QT3.100}}
+			{{form.RTA3_37_3}}<br><br>
+			*page #: {{form.RTA3_pg_37_3}}<br><br>
+			
+			<b>K. Performance Characteristics – In Vitro Diagnostic Devices Only(see also 21 CFR 809.10(b)(12))</b><br><br>
+			{{QT3.101}}
+			{{form.RTA3_K}}
+			*page #: {{form.RTA3_pg_K}}<br>
+			{{QT3.102}}<br><br>
+			{{QT3.103}}<br><br>
+			{{QT3.104}}
+			{{form.RTA3_38_1}}<br><br>
+			*page #: {{form.RTA3_pg_38_1}}<br><br>
+			{{QT3.105}}
+			{{form.RTA3_38_2}}<br><br>
+			*page #: {{form.RTA3_pg_38_2}}<br><br>
+			{{QT3.106}}
+			{{form.RTA3_38_3}}<br><br>
+			*page #: {{form.RTA3_pg_38_3}}<br><br>
+			{{QT3.107}}
+			{{form.RTA3_38_4}}<br><br>
+			*page #: {{form.RTA3_pg_38_4}}<br><br>
+			{{QT3.108}}
+			{{form.RTA3_39}}<br><br>
+			*page #: {{form.RTA3_pg_39}}<br><br>
+			{{QT3.109}}
+			{{form.RTA3_39_1}}<br><br>
+			*page #: {{form.RTA3_pg_39_1}}<br><br>
+			{{QT3.110}}
+			{{form.RTA3_39_2}}<br><br>
+			*page #: {{form.RTA3_pg_39_2}}<br><br>
+			
+			
+			<button type="submit" value="save">Save Changes</button>
+		</form>
 	<br>
 
         <hr>

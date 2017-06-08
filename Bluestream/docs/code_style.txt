@@ -1,0 +1,3 @@
+Python Coding Style Notes:
+	fill tabs with 4 spaces for consistency
+	use single quotes (') first instead of (")

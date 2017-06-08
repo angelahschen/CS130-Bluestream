@@ -7,6 +7,7 @@
 <div class="wrapper">
     <div class="sidebar" data-color="blue">
 
+
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text">
@@ -16,17 +17,17 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="/dashboard">
+                    <a href="/dashboard ">
                         <p>Projects</p>
                     </a>
 
                         <ul>
-                            <a href="../sectionlist">
-		                    <p>Syringe</p>
+                            <a href="../">
+		                    <p>{{ name }}</p>
                             </a>
                             <ul>
                                 <a href="#">
-		                        <p>RTA Checklist</p>
+		                        <p>{{ section_name }}</p>
                                 </a>
                             </ul>
 		                </ul>
@@ -79,18 +80,18 @@
 
     <!-- 510(k) Overview -->
     <div class="form-overview">
-		<h2>510(k) Form</h2>
+		<h2>{{ section_name }}</h2>
     </div>
 	<form action="" method="post">
 		{% csrf_token %}
         <p>I certify that, in my capacity as {{form.position}} of {{form.company_name}}, 
-             that I have conducted a reasonable search of all information known or otherwise available about the types and causes of safety and/or effectiveness problems that have been reported for the {{form.device_name}}. I further certify that I am aware of the types of problems to which the {{form.device_name}} is susceptible and that, to the best of my knowledge, the following summary of the types and causes of safety and/or effectiveness problems about the {{form.device_name}} is complete and accurate.</p><br>
+        that I have conducted a reasonable search of all information known or otherwise available about the types and causes of safety and/or effectiveness problems that have been reported for the {{form.device_name}}. I further certify that I am aware of the types of problems to which the <b>{{dev_name}}</b> is susceptible and that, to the best of my knowledge, the following summary of the types and causes of safety and/or effectiveness problems about the <b>{{dev_name}}</b> is complete and accurate.</p><br>
              <p>
               {{form.summary_data}}
              </p>
           <br><br><br><br>
           <hr width=100px><br>
-          <u>{{form.signiture}}</u><br>
+          <u>{{form.signature}}</u><br>
           <p>(Signature of Certifier)<p>
          <u> {{form.certifier_name}}</u><br>
          <p>(Typed Name)</p>
@@ -106,11 +107,24 @@
 		<button type="submit" value="save">submit</button>
 	</form>
 	<br>
-        {% if messages %}
-            {% for message in messages %}
-                 <p>{{ message }}</p>
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
             {% endfor %}
         {% endif %}
+        
         <hr>
                                  </div>
                         </div>

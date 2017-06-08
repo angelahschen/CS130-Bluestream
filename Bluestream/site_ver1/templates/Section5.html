@@ -17,17 +17,17 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="/dashboard">
+                    <a href="/dashboard ">
                         <p>Projects</p>
                     </a>
 
                         <ul>
-                            <a href="../sectionlist">
-		                    <p>Syringe</p>
+                            <a href="../">
+		                    <p>{{ name }}</p>
                             </a>
                             <ul>
                                 <a href="#">
-		                        <p>RTA Checklist</p>
+		                        <p>{{ section_name }}</p>
                                 </a>
                             </ul>
 		                </ul>
@@ -80,7 +80,7 @@
 
     <!-- 510(k) Overview -->
     <div class="form-overview">
-		<h2>510(k) Form</h2>
+		<h2>{{ section_name }}</h2>
     </div>
 
 
@@ -99,6 +99,9 @@
 	<br>
 
         <hr>
+                                     <button class="button">
+                                        Submit
+                                     </button>
                                  </div>
                         </div>
 
@@ -106,6 +109,24 @@
 
             </div>
 
+			<!--
+				<tr>
+					<td></td>
+					<td></td>
+					<td>
+					b. Device class and panel or Classification regulation or Statement that device
+					has not been classified with rationale for that conclusion
+					</td>
+					<td>
+						<input type="checkbox" name="myTextEditBox" value="checked" />
+					</td>
+					<td>
+						<input type="checkbox" name="myTextEditBox" value="checked" />
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+			-->
         </div>
 
 
