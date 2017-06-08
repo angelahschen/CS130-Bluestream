@@ -19,6 +19,21 @@ import django.contrib.messages as messages
 import os
 
 #############
+# Helper Functions
+
+def get_project(request):
+    if (request.user.person.role == 'R'):
+        # get session project
+        # TODO: do we need to revalidate the session project id? - it's server side, so it should be fine?
+        project = Project.objects.filter(id      = request.session['project_id'],
+                                         creator = request.user).first()
+    else:
+        project = Project.objects.filter(id      = request.session['project_id'],
+                                         client  = request.user).first()
+
+    return project
+
+#############
 # Section Callbacks for section_chooser in views.py
 
 def section3(request, name):
@@ -43,9 +58,8 @@ def section3(request, name):
     for line in f:
         QT3.append(line)
 
-    # get session project
-    project = Project.objects.filter(id      = request.session['project_id'],
-                                     creator = request.user).first()
+    project = get_project(request)
+
     if (project is None):
         # if this is none, then the session's cached project_id isn't in any of the user's projects
         # TODO: maybe include error string saying that the session expired or something
@@ -76,10 +90,8 @@ def section3(request, name):
 
 def section4(request, name):
 
-    # get session project
-    # TODO: do we need to revalidate the session project id? - it's server side, so it should be fine?
-    project = Project.objects.filter(id      = request.session['project_id'],
-                                     creator = request.user).first()
+    project = get_project(request)
+
     if (project is None):
         # if this is none, then the session's cached project_id isn't in any of the user's projects
         # TODO: maybe include error string saying that the session expired or something ?
@@ -109,8 +121,8 @@ def section4(request, name):
 
 def section5(request, name):
 
-    project = Project.objects.filter(id      = request.session['project_id'],
-                                     creator = request.user).first()
+    project = get_project(request)
+
     if (project is None):
         return redirect("/dashboard")
 
@@ -137,8 +149,8 @@ def section5(request, name):
 #form is not saving to db, query causes 500
 def section6(request, name):
 
-    project = Project.objects.filter(id      = request.session['project_id'],
-                                     creator = request.user).first()
+    project = get_project(request)
+
     if (project is None):
         return redirect("/dashboard")
 
@@ -160,8 +172,8 @@ def section6(request, name):
 
 def section7(request, name):
 
-    project = Project.objects.filter(id      = request.session['project_id'],
-                                     creator = request.user).first()
+    project = get_project_(request)
+
     if (project is None):
         return redirect("/dashboard")
 
@@ -193,8 +205,9 @@ def section7(request, name):
     return render(request, 'Section7.html', context = context)
 
 def section8(request, name):
-    project = Project.objects.filter(id      = request.session['project_id'],
-                                     creator = request.user).first()
+
+    project = get_project_(request)
+
     if (project is None):
         return redirect("/dashboard")
 
