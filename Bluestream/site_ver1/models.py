@@ -6,9 +6,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.template.defaultfilters import filesizeformat
+from django.utils.deconstruct import deconstructible
+from django.core.exceptions import ValidationError
 
 #Other imports
 import datetime
+import magic
 
 # Create your models here.
 MAX_PASS_LENGTH = 20
@@ -114,10 +118,29 @@ def get_disc_upload_filename(instance, filename):
 
     return 'uploads/project_{0}_{1}/section8/disc/{2}'.format(project_id, project_name, filename)
 
-class FormSection8(models.Model):
+@deconstructible
+class FileValidator(object):
+    error_msg = {
+        'content_type': "Files of type %(content_type)s are not allowed"
+    }
+    def __init__(self, content_types=()):
+        self.content_types = content_types
 
+    def __call__(self, data):
+        if self.content_types:
+            content_type = magic.from_buffer(data.read(), mime = True)
+            if content_type not in self.content_types:
+                params ={'content_type': content_type}
+                raise ValidationError(self.error_msg['content_type'], 'content_type', params)
+
+    def __eq(self, other):
+        return isinstance(other, FileValidator)
+
+
+class FormSection8(models.Model):
+    validate_file   = FileValidator(content_types=('application/pdf'))
     project         = models.ForeignKey(Project)
     cert_filename   = models.CharField(max_length = 50,  null=True, blank=True)
     disc_filename   = models.CharField(max_length = 50,  null=True, blank=True)
-    certification   = models.FileField(upload_to = get_cert_upload_filename, verbose_name = 'Select a file')
-    disclosure      = models.FileField(upload_to = get_disc_upload_filename, verbose_name = 'Select a file')
+    certification   = models.FileField(upload_to = get_cert_upload_filename, verbose_name = 'Select a file', validators=[validate_file])
+    disclosure      = models.FileField(upload_to = get_disc_upload_filename, verbose_name = 'Select a file', validators=[validate_file])

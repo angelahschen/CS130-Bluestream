@@ -112,4 +112,3 @@ def showproject(request, name):
 
 def logout_view(request):
     logout(request)
-

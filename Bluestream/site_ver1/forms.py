@@ -1,4 +1,4 @@
-import datetime
+import datetime, magic
 from django import forms
 
 from django.core.exceptions import NON_FIELD_ERRORS, ValidationError

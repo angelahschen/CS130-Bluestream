@@ -86,7 +86,17 @@ def section3(request, name):
             previous_data = None
         form = CoverLetterForm()
 
-    return render(request,'Section3.html', {'form': form, 'QT1': QT1, 'QT2': QT2, 'QT3': QT3, 'name': name, 'project_id'   : request.session['project_id'], 'section_name':"RTA checklist (in Section 3 after cover letter)"})
+    context = {
+        'form': form,
+        'QT1': QT1,
+        'QT2': QT2,
+        'QT3': QT3,
+        'name': name,
+        'project_id'   : request.session['project_id'],
+        'section_name' : 'RTA checklist (in Section 3 after cover letter)'
+    }
+
+    return render(request, 'Section3.html', context = context)
 
 def section4(request, name):
 
@@ -232,7 +242,6 @@ def section8(request, name):
         previous.disc_filename = request.FILES['disclosure'].name
 
         form = Section8Form(data = request.POST, files = request.FILES, instance = previous)
-        #TODO: check file for security
         if form.is_valid():
             form.save()
             messages.success(request, 'Form submission successful')
@@ -247,7 +256,7 @@ def section8(request, name):
         'name'                      : name,
         'previous_certification'    : None,
         'previous_disclosure'       : None,
-        'project_id': request.session['project_id'],
+        'project_id'                : request.session['project_id'],
         'section_name'              : "Section 8: Financial Certification or Disclosure Statement" }
 
     if (previous is not None):
