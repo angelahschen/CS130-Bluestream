@@ -23,14 +23,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'keh3v^a7sedr@t02^6u1*l_20kk%8lm(mble19xb*hbpe4!9&('
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Set to True before deploying
+# Set to False for local testing
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [u'localhost',                                              # for development
+                 u'django-env2.5mfmsrhinp.us-west-2.elasticbeanstalk.com',  # for demo
+                 u'django-env4.5mfmsrhinp.us-west-2.elasticbeanstalk.com']  # for testing
 
 # Application definition
 
-STATIC_ROOT = 'site_ver1/'
+STATIC_ROOT = 'static/'
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = ()
