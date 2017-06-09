@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^dashboard/$',  views.dashboard),
     url(r'^dashboard/newproject/$', views.newproject, name='newproject'),
     url(r'^dashboard/project/(?P<name>[^/]+)/$', views.showproject,name = 'project'),
+    url(r'^dashboard/project/delete/(?P<name>[^/]+)/$', views.deleteproject,name = 'project'),
     # 510k Sections
     url(r'^dashboard/project/(?P<name>[^/]+)/sectionlist/$',  views.dashboard_section, name='sectionlist'),
     url(r'^dashboard/project/(?P<name>[^/]+)/section(?P<section_number>[0-9]+)/$',   views.section_chooser),

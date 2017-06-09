@@ -28,7 +28,11 @@
                                                 {% for project in projects %}
                                                     <tr>
                                                     <td><a href="project/{{project.name}}?id={{project.id}}">{{ project.name }} </a></td>
+                                                    {% if role %}
+                                                    <td>
+                                                        <a class="btn btn-default btn-lg" href="project/delete/{{project.name}}/?id={{project.id}}">Delete</a></td>  
                                                     </tr>
+                                                    {% endif %}
                                                 {% endfor %}
                                         </tbody>
                                     </table>
@@ -36,9 +40,11 @@
                             </div>
                         </div>
                         {% if role %}
-                    <a class="btn btn-default btn-lg" href="newproject">Create New Project &raquo;</a>
-
+                    <a class="btn btn-default btn-lg" href="newproject">Create New Project &raquo;</a>  
                     {% endif %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
                     </div>
                 </div>
         </div>

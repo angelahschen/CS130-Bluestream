@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import EmailMessage
-
+import django.contrib.messages as messages
 # Create your views here.
 
 def homepage(request):
@@ -67,16 +67,16 @@ def logouttry(request):
 
 @login_required
 def dashboard(request):
-    role = request.user.person.role
-    if role == 'R':
-        projects = Project.objects.filter(creator = request.user)
-    elif role == 'C':
-        projects = Project.objects.filter(client = request.user)
-    data = []
-    request.session['project_id'] = 0 # clearing the session id
-    for project in projects:
-            data.append({'name': project.proj_name, 'id' : project.id})
-    return render(request, 'dashboard.html', {'projects': data, 'role': role == 'R'})
+        role = request.user.person.role
+        if role == 'R':
+            projects = Project.objects.filter(creator = request.user)
+        elif role == 'C':
+            projects = Project.objects.filter(client = request.user)
+        data = []
+        request.session['project_id'] = 0 # clearing the session id
+        for project in projects:
+                data.append({'name': project.proj_name, 'id' : project.id})
+        return render(request, 'dashboard.html', {'projects': data, 'role': role == 'R'})
 @login_required
 def newproject(request):
     if request.method == "POST":
@@ -110,5 +110,19 @@ def showproject(request, name):
     else:
         return HttpResponseRedirect('/dashboard')
 
+@login_required
+def deleteproject(request, name):
+    role = request.user.person.role
+    project_id = int(request.GET['id'])
+    if role =='R':
+        del_result = Project.objects.filter(id = project_id, creator = request.user).delete()
+        if del_result[0] == 1 :
+            messages.success(request, 'Delete successful')
+        else:
+            messages.error(request, 'There is a problem deleting project')
+        return HttpResponseRedirect('/dashboard')
+
 def logout_view(request):
     logout(request)
+
+
