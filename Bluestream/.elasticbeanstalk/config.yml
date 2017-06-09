@@ -1,6 +1,10 @@
 branch-defaults:
   default:
-    environment: django-env
+    environment: django-env2
+environment-defaults:
+  django-env:
+    branch: null
+    repository: null
 global:
   application_name: site_ver1
   branch: null
