@@ -86,7 +86,7 @@ def section3(request, name):
             previous_data = None
         form = CoverLetterForm()
 
-    return render(request,'Section3.html', {'form': form, 'QT1': QT1, 'QT2': QT2, 'QT3': QT3, 'name': name, 'section_name':"RTA checklist (in Section 3 after cover letter)"})
+    return render(request,'Section3.html', {'form': form, 'QT1': QT1, 'QT2': QT2, 'QT3': QT3, 'name': name, 'project_id'   : request.session['project_id'], 'section_name':"RTA checklist (in Section 3 after cover letter)"})
 
 def section4(request, name):
 
@@ -142,6 +142,7 @@ def section5(request, name):
 
     context = {'form'         : form,
                'name'         : name,
+               'project_id': request.session['project_id'],
                'section_name' : "Section 5: 510K Summary / 510K Statement" }
 
     return render(request,'Section5.html', context = context)
@@ -168,11 +169,19 @@ def section6(request, name):
     else:
         form = Section6Form(instance = previous)
 
-    return render(request, 'Section6.html', {'form':form, 'name': name, 'section_name':"Section 6: Truthful and Accuracy Statement"})
+    context = {
+        'form': form,
+        'name': name,
+        'project_id': request.session['project_id'],
+        'section_name': "Section 6: Truthful and Accuracy Statement"
+    }
+
+
+    return render(request, 'Section6.html', context = context)
 
 def section7(request, name):
 
-    project = get_project_(request)
+    project = get_project(request)
 
     if (project is None):
         return redirect("/dashboard")
@@ -199,6 +208,7 @@ def section7(request, name):
         'form'          : form,
         'name'          : name,
         'dev_name'      : template_dev_name,
+        'project_id': request.session['project_id'],
         'section_name'  : "Section 7: Class III Summary and Certification"
     }
 
@@ -206,7 +216,7 @@ def section7(request, name):
 
 def section8(request, name):
 
-    project = get_project_(request)
+    project = get_project(request)
 
     if (project is None):
         return redirect("/dashboard")
@@ -237,6 +247,7 @@ def section8(request, name):
         'name'                      : name,
         'previous_certification'    : None,
         'previous_disclosure'       : None,
+        'project_id': request.session['project_id'],
         'section_name'              : "Section 8: Financial Certification or Disclosure Statement" }
 
     if (previous is not None):
