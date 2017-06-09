@@ -107,8 +107,8 @@ class myForm(forms.Form):
 class PersonForm(myForm):
 	name = forms.CharField(max_length = 50)
 	email = forms.EmailField(max_length = 100)
-	password = forms.CharField(max_length = 50)
-	repeat_password = forms.CharField(max_length = 50)
+	password = forms.CharField(max_length = 50, widget=forms.PasswordInput)
+	repeat_password = forms.CharField(max_length = 50, widget=forms.PasswordInput)
 	options = (
 		("C", "Client"),
 		("R", "Regulatory Consultant"),
@@ -127,7 +127,7 @@ class PersonForm(myForm):
 		return not self._errors
 class LoginForm(myForm):
 	email = forms.EmailField(max_length = 100)
-	password = forms.CharField(max_length = 50)
+	password = forms.CharField(max_length = 50, widget=forms.PasswordInput)
 	def is_valid(self):
 		valid = super(LoginForm, self).is_valid()
 		if not valid:
